@@ -1,11 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthComponent } from './auth/auth.component';
+import { AuthSharedComponent } from './authentication/auth-shared/auth-shared.component';
+import { SignInComponent } from './authentication/sign-in/sign-in.component';
+import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 
 
 const routes: Routes = [
-
-  {path:'auth', component: AuthComponent}
+    {
+      path:'auth', 
+      component: AuthSharedComponent,
+      // children:[
+      //   {
+      //     path:'sign-in',
+      //     component: SignInComponent
+      //   },
+      //   {
+      //     path:'sign-up', 
+      //     component: SignUpComponent
+      //   },
+      // ]
+      //children: [{ path: '', component: AuthSharedComponent }]
+      loadChildren: () => import('./authentication/authentication.module').then(mod => mod.AuthenticationModule)
+    },
+    {
+      path : '', redirectTo:'/auth', pathMatch : 'full'
+    },
 
 ];
 
