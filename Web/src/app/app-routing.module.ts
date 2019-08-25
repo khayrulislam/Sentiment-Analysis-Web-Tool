@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthSharedComponent } from './authentication/auth-shared/auth-shared.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './shared-component/not-found/not-found.component';
 
 
 const routes: Routes = [
