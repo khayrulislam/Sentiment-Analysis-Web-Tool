@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthSharedComponent } from './authentication/auth-shared/auth-shared.component';
 import { NotFoundComponent } from './shared-components/not-found/not-found.component';
+import { AuthComponent } from './authentication/auth/auth.component';
 
 
 const routes: Routes = [
   {
-    path : '', redirectTo:'/auth/sign-in', pathMatch : 'full'
+    path : '', redirectTo:'/auth/shared/sign-in', pathMatch : 'full'
+  },
+  {
+    path : 'auth', redirectTo:'/auth/shared/sign-in', pathMatch : 'full'
   },
   {
     path:'auth', 
-    component: AuthSharedComponent,
+    component: AuthComponent,
     loadChildren: () => import('./authentication/authentication.module').then(mod => mod.AuthenticationModule)
   },
   {
