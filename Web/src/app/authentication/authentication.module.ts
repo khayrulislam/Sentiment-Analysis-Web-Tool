@@ -7,10 +7,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import {MatCardModule} from '@angular/material/card';
 import { RecoveryPassComponent } from './recovery-pass/recovery-pass.component';
 import { AuthComponent } from './auth/auth.component';
-import { SharedComponent } from './shared/shared.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
-  declarations: [ SignInComponent, SignUpComponent, RecoveryPassComponent, AuthComponent, SharedComponent],
+  declarations: [ SignInComponent, SignUpComponent, RecoveryPassComponent, AuthComponent, AccountComponent],
   imports: [
     CommonModule,
     AuthenticationRoutingModule,
