@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-navigation',
+  selector: 'navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })

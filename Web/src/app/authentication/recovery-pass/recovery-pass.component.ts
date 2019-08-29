@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-recovery-pass',
+  selector: 'recovery-pass',
   templateUrl: './recovery-pass.component.html',
   styleUrls: ['./recovery-pass.component.scss']
 })
