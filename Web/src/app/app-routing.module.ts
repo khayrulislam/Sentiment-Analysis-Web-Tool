@@ -18,7 +18,7 @@ const routes: Routes = [
     loadChildren: () => import('./authentication/authentication.module').then(mod => mod.AuthenticationModule)
   },
   {
-    path:'app/home',
+    path:'app',
     component: NavigationComponent,
     loadChildren: () => import('./main/main.module').then(mod => mod.MainModule)
   },
