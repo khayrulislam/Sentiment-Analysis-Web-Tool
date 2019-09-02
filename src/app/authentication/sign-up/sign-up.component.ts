@@ -8,7 +8,10 @@ import { Validators, FormControl } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() { }
+    hide;
+  constructor() { 
+      this.hide = true;
+  }
 
   ngOnInit() {
   }

@@ -8,13 +8,17 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+
+    hide;
+  constructor() { 
+    this.hide = true;
+  }
 
   ngOnInit() {
   }
 
   email = new FormControl('', [Validators.required, Validators.email]);
-
+  
   getErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :
         this.email.hasError('email') ? 'Not a valid email' :
