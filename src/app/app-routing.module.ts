@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './shared-components/not-found/not-found.component';
-//import { NavigationComponent } from './main/navigation/navigation.component';
+import { SideNavComponent } from './web/side-nav/side-nav.component';
+import { matDrawerAnimations } from '@angular/material/sidenav';
+import { HeaderNavComponent } from './web/header-nav/header-nav.component';
 
 
 const routes: Routes = [
@@ -21,9 +23,20 @@ const routes: Routes = [
 //     component: NavigationComponent,
 //     loadChildren: () => import('./main/main.module').then(mod => mod.MainModule)
 //   },
-  {
-    path: '**', component: NotFoundComponent
-  }
+    // {
+    //     path:'',
+    //     redirectTo: 'header',
+    //     pathMatch: 'full'
+    // },
+    {
+        path:'hh',
+        component : HeaderNavComponent,
+        loadChildren: () => import('./web/web.module').then(mod=>mod.WebModule)
+    },
+
+    {
+        path: '**', component: NotFoundComponent
+    }
 
 ];
 
