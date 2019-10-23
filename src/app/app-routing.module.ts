@@ -23,13 +23,13 @@ const routes: Routes = [
 //     component: NavigationComponent,
 //     loadChildren: () => import('./main/main.module').then(mod => mod.MainModule)
 //   },
-    // {
-    //     path:'',
-    //     redirectTo: 'header',
-    //     pathMatch: 'full'
-    // },
     {
-        path:'hh',
+        path:'',
+        redirectTo: 'repositories',
+        pathMatch: 'full'
+    },
+    {
+        path:'repositories',
         component : HeaderNavComponent,
         loadChildren: () => import('./web/web.module').then(mod=>mod.WebModule)
     },
