@@ -44,3 +44,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# module
+/src/app/authentication/*
+/src/app/main/*
