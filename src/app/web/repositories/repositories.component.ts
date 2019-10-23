@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Filter } from './../../data/data';
+import { RepositoriesService } from './repositories.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { RepositoriesDataSource } from './repositories-data-source';
+import { MatPaginator } from '@angular/material';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-repositories',
@@ -7,9 +12,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RepositoriesComponent implements OnInit {
 
-  constructor() { }
+    dataSource: RepositoriesDataSource;
+    displayedColumns= ["Id", "RepoId", "Name","OwnerName","Url"];
 
-  ngOnInit() {
-  }
+    filter: Filter;
+
+    @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
+
+    //paginator: MatPaginator;
+
+    constructor(private repositoriesService:RepositoriesService) {
+        
+    }
+
+    ngOnInit() {
+        this.dataSource = new RepositoriesDataSource(this.repositoriesService);
+        this.filter = {
+            PageNumber : 0,
+            PageSize : 2,
+            SearchText : "",
+            SortOrder : "asc"
+        };
+        this.dataSource.loadFilterRepositoryies(this.filter);
+    }
+
+    ngAfterViewInit(){
+        this.paginator.page
+        .pipe(
+            tap(() => this.loadRepositoryData())
+        )
+        .subscribe();
+    }
+
+    loadRepositoryData(){
+        
+        this.filter.PageSize = this.paginator.pageSize;
+        this.filter.PageNumber = this.paginator.pageIndex;
+        this.dataSource.loadFilterRepositoryies(this.filter);
+
+    }
 
 }
