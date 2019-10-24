@@ -7,45 +7,76 @@
     </button> -->
     <span>Sentiment-Web</span>
 </mat-toolbar>
-<p>repositories works!</p>
 
-<mat-table class=" mat-elevation-z8" [dataSource]="dataSource">
-  
-    <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
-        <mat-cell *matCellDef="let repository">{{repository.Id}}</mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="RepoId">
-        <mat-header-cell *matHeaderCellDef>RepoId</mat-header-cell>
-        <mat-cell class="description-cell"
-                  *matCellDef="let repository">{{repository.RepoId}}</mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="Name">
-        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-        <mat-cell class="duration-cell"
-                  *matCellDef="let repository">{{repository.Name}}</mat-cell>
-    </ng-container>
+<div class="repositoryContent">
+    <div>
+        <mat-card>
+            <mat-card-content > 
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div>
+                        Repository List
+                    </div>
+                    <div>
+                        <button mat-icon-button  color="primary">
+                            <mat-icon>add_box</mat-icon>
+                        </button>
+                    </div>
+                </div>               
+            </mat-card-content>   
+        </mat-card>
+    </div>
+    <div class=" mat-elevation-z8" >
+        <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+                <mat-spinner mode="indeterminate"></mat-spinner>
+            </div>
+
+        <mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="Id">
+                <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+                <mat-cell *matCellDef="let repository">{{repository.Id}}</mat-cell>
+            </ng-container>
+
+          
+            <ng-container matColumnDef="RepoId">
+                <mat-header-cell *matHeaderCellDef>RepoId</mat-header-cell>
+                <mat-cell class="description-cell"
+                          *matCellDef="let repository">{{repository.RepoId}}</mat-cell>
+            </ng-container>
+
+          
+            <ng-container matColumnDef="Name">
+                <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                <mat-cell class="duration-cell"
+                          *matCellDef="let repository">{{repository.Name}}</mat-cell>
+            </ng-container>
+            
+        
+            <ng-container matColumnDef="OwnerName">
+                <mat-header-cell *matHeaderCellDef>OwnerName</mat-header-cell>
+                <mat-cell class="duration-cell"
+                          *matCellDef="let repository">{{repository.OwnerName}}</mat-cell>
+            </ng-container>
+        
+
+            <ng-container matColumnDef="Url">
+                <mat-header-cell *matHeaderCellDef>GitHub Link</mat-header-cell>
+                <mat-cell class="duration-cell" *matCellDef="let repository">
+                    <a href="{{repository.Url}}" target="_blank">
+                        <mat-icon >launch</mat-icon>
+                    </a>
+                          
+                </mat-cell>
+            </ng-container>
+        
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            
+        </mat-table>
+        
+        <mat-paginator [length]="dataSource.totlaData" [pageSizeOptions]="[2,3,4,5]" showFirstLastButtons>
+        </mat-paginator>
+    </div>
     
-
-    <ng-container matColumnDef="OwnerName">
-        <mat-header-cell *matHeaderCellDef>OwnerName</mat-header-cell>
-        <mat-cell class="duration-cell"
-                  *matCellDef="let repository">{{repository.OwnerName}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="Url">
-        <mat-header-cell *matHeaderCellDef>Url</mat-header-cell>
-        <mat-cell class="duration-cell"
-                  *matCellDef="let repository">{{repository.Url}}</mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    
-</mat-table>
-
-<mat-paginator [length]="dataSource.totlaData" [pageSize]="2" [pageSizeOptions]="[2,3,4,5]">
-</mat-paginator>
+</div>

@@ -39,7 +39,6 @@ export class RepositoriesDataSource implements DataSource<Repository>{
         });
     }
 
-
     loadFilterRepositoryies(filter: Filter){
         this.loadingSubject.next(true);
         this.repositoriesService.repositoryFilterList(filter)
@@ -48,6 +47,7 @@ export class RepositoriesDataSource implements DataSource<Repository>{
             finalize(()=>this.loadingSubject.next(false))
             )
         .subscribe((data:Entries<Repository>)=>{
+            //debugger;
             this.repositoriesSubject.next(data.Data);
             this.totlaData = data.TotalData;
             

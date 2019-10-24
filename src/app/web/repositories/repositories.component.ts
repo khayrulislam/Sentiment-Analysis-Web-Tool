@@ -18,9 +18,7 @@ export class RepositoriesComponent implements OnInit {
     filter: Filter;
 
     @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
-
-    //paginator: MatPaginator;
-
+    
     constructor(private repositoriesService:RepositoriesService) {
         
     }
