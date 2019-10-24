@@ -39,28 +39,30 @@
           
             <ng-container matColumnDef="RepoId">
                 <mat-header-cell *matHeaderCellDef>RepoId</mat-header-cell>
-                <mat-cell class="description-cell"
-                          *matCellDef="let repository">{{repository.RepoId}}</mat-cell>
+                <mat-cell *matCellDef="let repository">{{repository.RepoId}}</mat-cell>
             </ng-container>
 
           
             <ng-container matColumnDef="Name">
                 <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-                <mat-cell class="duration-cell"
-                          *matCellDef="let repository">{{repository.Name}}</mat-cell>
+                <mat-cell *matCellDef="let repository" >                          
+                    <!-- <a routerLink="['repository',repository.Name]" routerLinkActive="true" >
+                        {{repository.Name}}
+                    </a>   -->
+                    {{repository.Name}}   
+                </mat-cell>
             </ng-container>
             
         
             <ng-container matColumnDef="OwnerName">
                 <mat-header-cell *matHeaderCellDef>OwnerName</mat-header-cell>
-                <mat-cell class="duration-cell"
-                          *matCellDef="let repository">{{repository.OwnerName}}</mat-cell>
+                <mat-cell *matCellDef="let repository">{{repository.OwnerName}}</mat-cell>
             </ng-container>
         
 
             <ng-container matColumnDef="Url">
                 <mat-header-cell *matHeaderCellDef>GitHub Link</mat-header-cell>
-                <mat-cell class="duration-cell" *matCellDef="let repository">
+                <mat-cell *matCellDef="let repository" (click)="$event.stopPropagation()">
                     <a href="{{repository.Url}}" target="_blank">
                         <mat-icon >launch</mat-icon>
                     </a>
@@ -71,7 +73,7 @@
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             
-            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns" (click)=showRepositoryDetail(row)></mat-row>
             
         </mat-table>
         

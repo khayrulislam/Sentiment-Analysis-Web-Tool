@@ -15,7 +15,7 @@ const routes: Routes = [
         component: RepositoriesComponent
     },
     {
-        path:'repository/:repositoryId',
+        path:'repository/:repositoryName',
         component: SideNavComponent
     }
 ];
