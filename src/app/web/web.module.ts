@@ -18,10 +18,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule} from '@angular/flex-layout';
+import { MatProgressBarModule, MatDialogModule } from '@angular/material';
+import { InputModalComponent } from './repositories/input-modal/input-modal.component';
 
 @NgModule({
-  declarations: [ SideNavComponent,  RepositoriesComponent],
+  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent],
   imports: [
     CommonModule,
     WebRoutingModule,
@@ -38,7 +40,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatProgressSpinnerModule,
     MatCardModule,
     FlexLayoutModule,
-    HttpClientModule
-  ]
+    HttpClientModule,
+    MatProgressBarModule,
+    MatDialogModule
+  ],
+  entryComponents:[InputModalComponent]
 })
 export class WebModule { }

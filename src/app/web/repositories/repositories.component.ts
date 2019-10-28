@@ -2,9 +2,10 @@ import { Filter, Repository } from './../../data/data';
 import { RepositoriesService } from './repositories.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RepositoriesDataSource } from './repositories-data-source';
-import { MatPaginator } from '@angular/material';
+import { MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { tap } from 'rxjs/operators';
 import { Router, Route } from '@angular/router';
+import { InputModalComponent } from './input-modal/input-modal.component';
 
 @Component({
   selector: 'app-repositories',
@@ -14,13 +15,14 @@ import { Router, Route } from '@angular/router';
 export class RepositoriesComponent implements OnInit {
 
     dataSource: RepositoriesDataSource;
-    displayedColumns= ["Id", "RepoId", "Name","OwnerName","Url"];
+    displayedColumns= ["RepoId", "RepositoryName","OwnerName","State","Url"];
 
     filter: Filter;
 
     @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
     
-    constructor(private repositoriesService:RepositoriesService, private router:Router) {
+    constructor(private repositoriesService:RepositoriesService, private router:Router,
+        private matDialog:MatDialog) {
         
     }
 
@@ -42,17 +44,23 @@ export class RepositoriesComponent implements OnInit {
     }
 
     loadRepositoryData(){
-        
         this.filter.PageSize = this.paginator.pageSize;
         this.filter.PageNumber = this.paginator.pageIndex;
         this.dataSource.loadFilterRepositoryies(this.filter);
-
     }
 
     showRepositoryDetail(repositoryData:Repository){
-
         this.router.navigateByUrl(`/web/repository/${repositoryData.Name}`);
+    }
 
+    openInputModal(){
+        console.log("open modal");
+
+        const matDialogConfig = new MatDialogConfig();
+        matDialogConfig.autoFocus = true;
+        //matDialogConfig.disableClose = true;
+
+        this.matDialog.open(InputModalComponent,matDialogConfig);
     }
 
 }

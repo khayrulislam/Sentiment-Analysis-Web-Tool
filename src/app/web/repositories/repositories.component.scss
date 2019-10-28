@@ -6,3 +6,11 @@
 .spinnerCenter{
     margin: auto;
 }
+.running{
+    color: rebeccapurple;
+    display: flex;
+    flex-direction: row;
+}
+.complete{
+    color: seagreen;
+}

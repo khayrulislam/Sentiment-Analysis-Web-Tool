@@ -6,6 +6,7 @@ export interface Repository {
     Name: string,
     OwnerName: string,
     AnalysisDate: Data,
+    State: boolean,
     Url: string,
     Branch?:any
     RepositoryContributors?:any,
