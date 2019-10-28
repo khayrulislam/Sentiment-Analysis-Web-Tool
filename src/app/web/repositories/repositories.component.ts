@@ -37,9 +37,7 @@ export class RepositoriesComponent implements OnInit {
 
     ngAfterViewInit(){
         this.paginator.page
-        .pipe(
-            tap(() => this.loadRepositoryData())
-        )
+        .pipe(tap(() => this.loadRepositoryData()))
         .subscribe();
     }
 
