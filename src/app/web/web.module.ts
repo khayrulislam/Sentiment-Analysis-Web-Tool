@@ -21,6 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule} from '@angular/flex-layout';
 import { MatProgressBarModule, MatDialogModule } from '@angular/material';
 import { InputModalComponent } from './repositories/input-modal/input-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent],
@@ -42,7 +43,8 @@ import { InputModalComponent } from './repositories/input-modal/input-modal.comp
     FlexLayoutModule,
     HttpClientModule,
     MatProgressBarModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   entryComponents:[InputModalComponent]
 })

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { RepositoryInput } from 'src/app/data/data';
 
 @Component({
   selector: 'app-input-modal',
@@ -8,9 +10,31 @@ import { MatDialogRef } from '@angular/material';
 })
 export class InputModalComponent implements OnInit {
 
-    constructor(private dialogRef: MatDialogRef<InputModalComponent>) { }
+    repoInput: RepositoryInput;
+    repositoryInputForm: FormGroup;
+    RepositoryName = new FormControl('',[Validators.required]);
+    RepositoryOwnerName = new FormControl('',[Validators.required]);
+
+    constructor(private dialogRef: MatDialogRef<InputModalComponent>, private formBuilder: FormBuilder) 
+    { }
 
     ngOnInit() {
+        this.initialize();
+        this.createInputForm();
+    }
+
+    initialize(){
+        this.repoInput = {
+            RepositoryName:"",
+            RepositoryOwnerName:""
+        };
+    }
+
+    createInputForm(){
+        this.repositoryInputForm = this.formBuilder.group({
+            "RepositoryName": this.RepositoryName,
+            "RepositoryOwnerName": this.RepositoryOwnerName
+        });
     }
 
     close(){
@@ -18,7 +42,13 @@ export class InputModalComponent implements OnInit {
     }
 
     save(){
+        console.log(this.repositoryInputForm.value);
 
+        this.repoInput.RepositoryName = this.repositoryInputForm.value.RepositoryName;
+        this.repoInput.RepositoryOwnerName = this.repositoryInputForm.value.RepositoryOwnerName;
+
+        console.log(this.repoInput);
+        this.close();
     }
 
 

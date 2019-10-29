@@ -15,6 +15,11 @@ export interface Repository {
     Contributors?:any
 }
 
+export interface RepositoryInput{
+    RepositoryName: string,
+    RepositoryOwnerName: string
+}
+
 export interface Filter{
     PageNumber: number,
     PageSize: number,
