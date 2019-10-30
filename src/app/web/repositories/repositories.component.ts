@@ -60,8 +60,10 @@ export class RepositoriesComponent implements OnInit {
         matDialogConfig.autoFocus = true;
         matDialogConfig.width = '400px';
         //matDialogConfig.disableClose = true;
-
-        this.matDialog.open(InputModalComponent,matDialogConfig);
+        let openDialogRef = this.matDialog.open(InputModalComponent,matDialogConfig);
+        openDialogRef.afterClosed().subscribe(res =>{
+            console.log(res);
+        });
     }
 
 }

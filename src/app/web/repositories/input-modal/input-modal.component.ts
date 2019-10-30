@@ -41,14 +41,10 @@ export class InputModalComponent implements OnInit {
         this.dialogRef.close();
     }
 
-    save(){
-        console.log(this.repositoryInputForm.value);
-
+    analysis(){
         this.repoInput.RepositoryName = this.repositoryInputForm.value.RepositoryName;
         this.repoInput.RepositoryOwnerName = this.repositoryInputForm.value.RepositoryOwnerName;
-
-        console.log(this.repoInput);
-        this.close();
+        this.dialogRef.close({event:"RepositoryAnalysis",data: this.repoInput});
     }
 
 
