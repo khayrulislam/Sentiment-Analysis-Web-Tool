@@ -31,6 +31,7 @@ export class RepositoriesComponent implements OnInit {
     ngOnInit() {
         this.dataSource = new RepositoriesDataSource(this.repositoriesService);
         this.filter = {
+            Id:0,
             PageNumber : 0,
             PageSize : 2,
             SearchText : "",
@@ -40,9 +41,7 @@ export class RepositoriesComponent implements OnInit {
     }
 
     ngAfterViewInit(){
-        this.paginator.page
-        .pipe(tap(() => this.loadRepositoryData()))
-        .subscribe();
+        this.paginator.page.pipe(tap(() => this.loadRepositoryData())).subscribe();
     }
 
     loadRepositoryData(){
@@ -51,8 +50,9 @@ export class RepositoriesComponent implements OnInit {
         this.dataSource.loadFilterRepositoryies(this.filter);
     }
 
-    showRepositoryDetail(repositoryData:Repository){
-        this.router.navigateByUrl(`/web/repository/${repositoryData.Name}`);
+    showRepositoryDetail(repository:Repository){
+        this.repositoriesService.setRepositroy(repository);
+        this.router.navigateByUrl(`/web/repository/${repository.Name}`);
     }
 
     openInputModal(){

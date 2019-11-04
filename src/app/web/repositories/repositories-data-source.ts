@@ -8,14 +8,14 @@ import { Entries } from 'src/app/data/entries';
 
 export class RepositoriesDataSource implements DataSource<Repository>{
    
-    constructor(private repositoriesService:RepositoriesService){
-    }
-
     private repositoriesSubject = new BehaviorSubject<Repository[]>([]);
     private loadingSubject = new BehaviorSubject<boolean>(false);
 
     public loading$ = this.loadingSubject.asObservable();
     public totlaData;
+
+    constructor(private repositoriesService:RepositoriesService){
+    }
 
     connect(collectionViewer:CollectionViewer): Observable<Repository[] | readonly Repository[]> {
         return this.repositoriesSubject.asObservable();

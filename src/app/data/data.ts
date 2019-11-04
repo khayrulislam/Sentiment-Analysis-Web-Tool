@@ -21,6 +21,7 @@ export interface RepositoryInput{
 }
 
 export interface Filter{
+    Id?:number;
     PageNumber: number,
     PageSize: number,
     SearchText: string,
@@ -30,5 +31,14 @@ export interface Filter{
 export enum ModalAction{
     CLOSE = "close",
     ANALYSIS = "analysis"
+}
+
+export interface Branch{
+    Id: number,
+    Name: string,
+    Sha: string,
+    Repository?: Repository,
+    RepositoryId: number,
+    BranchCommits?:any
 }
 

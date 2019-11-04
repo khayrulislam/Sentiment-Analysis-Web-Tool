@@ -1,1 +1,31 @@
-<p>branch works!</p>
+<div class=" mat-elevation-z8" >
+    <mat-progress-bar *ngIf="branchDataSource.loading$ | async" mode="indeterminate"></mat-progress-bar>
+   
+    <mat-table [dataSource]="branchDataSource">
+
+        <ng-container matColumnDef="Id">
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let branch">{{branch.Id}}</mat-cell>
+            </ng-container>
+
+        <ng-container matColumnDef="BranchName">
+            <mat-header-cell *matHeaderCellDef>Branch Name</mat-header-cell>
+            <mat-cell *matCellDef="let branch" > 
+                {{branch.Name}}   
+            </mat-cell>
+            </ng-container>
+    
+        <ng-container matColumnDef="Sha">
+            <mat-header-cell *matHeaderCellDef>Sha</mat-header-cell>
+            <mat-cell *matCellDef="let branch">{{branch.Sha}}</mat-cell>
+            </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <!-- (click)=showRepositoryDetail(row) -->
+        <mat-row *matRowDef="let row; columns: displayedColumns" ></mat-row>
+        
+    </mat-table>
+    
+    <mat-paginator [length]="branchDataSource.totlaData" [pageSizeOptions]="[2,3,4,5]" showFirstLastButtons>
+    </mat-paginator>
+</div>
