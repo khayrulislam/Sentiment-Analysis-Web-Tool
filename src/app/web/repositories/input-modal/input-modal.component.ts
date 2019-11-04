@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { RepositoryInput } from 'src/app/data/data';
+import { RepositoryInput, ModalAction } from 'src/app/data/data';
 
 @Component({
   selector: 'app-input-modal',
@@ -38,13 +38,13 @@ export class InputModalComponent implements OnInit {
     }
 
     close(){
-        this.dialogRef.close();
+        this.dialogRef.close({event:ModalAction.CLOSE});
     }
 
     analysis(){
         this.repoInput.RepositoryName = this.repositoryInputForm.value.RepositoryName;
         this.repoInput.RepositoryOwnerName = this.repositoryInputForm.value.RepositoryOwnerName;
-        this.dialogRef.close({event:"RepositoryAnalysis",data: this.repoInput});
+        this.dialogRef.close({event:ModalAction.ANALYSIS,data: this.repoInput});
     }
 
 

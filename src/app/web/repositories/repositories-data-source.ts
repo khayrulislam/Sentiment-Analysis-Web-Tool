@@ -50,7 +50,6 @@ export class RepositoriesDataSource implements DataSource<Repository>{
             //debugger;
             this.repositoriesSubject.next(data.Data);
             this.totlaData = data.TotalData;
-            
         });
     }
 

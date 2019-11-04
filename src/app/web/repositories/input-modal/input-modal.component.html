@@ -3,6 +3,14 @@
 <mat-dialog-content >
 
     <form [formGroup]="repositoryInputForm" fxLayout="column" fxLayoutAlign="space-around none">
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Repository Owner Name</mat-label>
+            <input matInput placeholder="Owner Name" [formControl]="RepositoryOwnerName">
+            <mat-error *ngIf="RepositoryOwnerName.hasError('required')">
+                Repository owner name is <strong>required</strong>
+              </mat-error>
+          </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Repository Name</mat-label>
@@ -12,13 +20,6 @@
               </mat-error>
           </mat-form-field>
 
-        <mat-form-field appearance="outline">
-            <mat-label>Repository Owner Name</mat-label>
-            <input matInput placeholder="Owner Name" [formControl]="RepositoryOwnerName">
-            <mat-error *ngIf="RepositoryOwnerName.hasError('required')">
-                Repository owner name is <strong>required</strong>
-              </mat-error>
-          </mat-form-field>
     </form>
 
     </mat-dialog-content>

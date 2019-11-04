@@ -27,3 +27,8 @@ export interface Filter{
     SortOrder: string
 }
 
+export enum ModalAction{
+    CLOSE = "close",
+    ANALYSIS = "analysis"
+}
+

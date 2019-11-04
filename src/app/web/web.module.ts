@@ -22,9 +22,14 @@ import { FlexLayoutModule} from '@angular/flex-layout';
 import { MatProgressBarModule, MatDialogModule } from '@angular/material';
 import { InputModalComponent } from './repositories/input-modal/input-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BranchComponent } from './side-nav/branch/branch.component';
+import { IssueComponent } from './side-nav/issue/issue.component';
+import { PullRequestComponent } from './side-nav/pull-request/pull-request.component';
+import { CollaboratorComponent } from './side-nav/collaborator/collaborator.component';
+import { CommitComponent } from './side-nav/commit/commit.component';
 
 @NgModule({
-  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent],
+  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent],
   imports: [
     CommonModule,
     WebRoutingModule,

@@ -1,4 +1,4 @@
-import { Filter, Repository } from './../../data/data';
+import { Filter, Repository, ModalAction } from './../../data/data';
 import { RepositoriesService } from './repositories.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RepositoriesDataSource } from './repositories-data-source';
@@ -6,6 +6,8 @@ import { MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { tap } from 'rxjs/operators';
 import { Router, Route } from '@angular/router';
 import { InputModalComponent } from './input-modal/input-modal.component';
+import { catchError, finalize } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-repositories',
@@ -62,7 +64,18 @@ export class RepositoriesComponent implements OnInit {
         //matDialogConfig.disableClose = true;
         let openDialogRef = this.matDialog.open(InputModalComponent,matDialogConfig);
         openDialogRef.afterClosed().subscribe(res =>{
-            console.log(res);
+            
+            if(res.event == ModalAction.ANALYSIS){
+                this.repositoriesService.repositoryAnalysis(res.data).pipe(
+                    catchError( ()=> of([])),
+                    finalize(()=> {})
+                ).subscribe(()=>{
+                    this.loadRepositoryData();
+                    console.log( " updae analysis " )
+                });
+                console.log( " data"+ res.data.RepositoryName )
+            }
+
         });
     }
 
