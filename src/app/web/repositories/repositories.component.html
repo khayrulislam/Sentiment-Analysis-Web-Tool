@@ -1,0 +1,85 @@
+<mat-toolbar color="primary">
+    <!-- <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button>
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button> -->
+    <span>Sentiment-Web</span>
+</mat-toolbar>
+
+<div class="repositoryContent">
+    <div>
+        <mat-card>
+            <mat-card-content > 
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div>
+                        Repository List
+                    </div>
+                    <div>
+                        <button mat-icon-button color="primary" title="Analyse Repository" (click)="openInputModal()" >
+                            <mat-icon>add_box</mat-icon>
+                        </button>
+                    </div>
+                </div>               
+            </mat-card-content>   
+        </mat-card>
+    </div>
+    <div class=" mat-elevation-z8" >
+        <mat-progress-bar *ngIf="dataSource.loading$ | async" mode="indeterminate"></mat-progress-bar>
+       
+        <mat-table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="RepoId">
+                <mat-header-cell *matHeaderCellDef>RepoId</mat-header-cell>
+                <mat-cell *matCellDef="let repository">{{repository.RepoId}}</mat-cell>
+                </ng-container>
+
+          
+            <ng-container matColumnDef="RepositoryName">
+                <mat-header-cell *matHeaderCellDef>Repository Name</mat-header-cell>
+                <mat-cell *matCellDef="let repository" > 
+                    {{repository.Name}}   
+                </mat-cell>
+                </ng-container>
+            
+        
+            <ng-container matColumnDef="OwnerName">
+                <mat-header-cell *matHeaderCellDef>Owner Name</mat-header-cell>
+                <mat-cell *matCellDef="let repository">{{repository.OwnerName}}</mat-cell>
+                </ng-container>
+        
+            <ng-container matColumnDef="State">
+                    <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
+                    <mat-cell *matCellDef="let repository" >
+                        <div *ngIf="repository.State == 0" class="running">
+                            <span>Running &nbsp;&nbsp;</span> 
+                            <mat-spinner [diameter]="20" mode="indeterminate"></mat-spinner> 
+                            </div>
+                        <div *ngIf="repository.State == 1" class="complete" >
+                            <span>Complete </span>   
+                        </div>
+                        </mat-cell>
+                </ng-container>
+
+            <ng-container matColumnDef="Url">
+                <mat-header-cell *matHeaderCellDef>GitHub Link</mat-header-cell>
+                <mat-cell *matCellDef="let repository" (click)="$event.stopPropagation()">
+                    <a href="{{repository.Url}}" target="_blank">
+                        <mat-icon >launch</mat-icon>
+                        </a>
+                    </mat-cell>
+                </ng-container>
+        
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            
+            <mat-row *matRowDef="let row; columns: displayedColumns" (click)=showRepositoryDetail(row)></mat-row>
+            
+        </mat-table>
+        
+        <mat-paginator [length]="dataSource.totlaData" [pageSizeOptions]="[2,3,4,5]" showFirstLastButtons>
+        </mat-paginator>
+    </div>
+    
+</div>

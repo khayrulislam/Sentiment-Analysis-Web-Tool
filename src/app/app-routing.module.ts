@@ -1,31 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './shared-components/not-found/not-found.component';
-import { AuthComponent } from './authentication/auth/auth.component';
-import { NavigationComponent } from './main/navigation/navigation.component';
+import { SideNavComponent } from './web/side-nav/side-nav.component';
+import { matDrawerAnimations } from '@angular/material/sidenav';
 
 
 const routes: Routes = [
-  {
-    path : '', redirectTo:'/auth/account/sign-in', pathMatch : 'full'
-  },
-  {
-    path : 'auth', redirectTo:'/auth/account/sign-in', pathMatch : 'full'
-  },
-  {
-    path:'auth', 
-    component: AuthComponent,
-    loadChildren: () => import('./authentication/authentication.module').then(mod => mod.AuthenticationModule)
-  },
-  {
-    path:'sentiment',
-    component: NavigationComponent,
-    loadChildren: () => import('./main/main.module').then(mod => mod.MainModule)
-  },
-  {
-    path: '**', component: NotFoundComponent
-  }
-
+    {
+        path:'',
+        redirectTo: 'web',
+        pathMatch: 'full'
+    },
+    {
+        path:'web',
+        loadChildren: () => import('./web/web.module').then(mod=>mod.WebModule)
+    },
+    {
+        path: 'not-found',
+        component: NotFoundComponent
+    },
+    {
+        path: '**', 
+        redirectTo: 'not-found',
+        pathMatch: 'full'
+    }
+    
 ];
 
 @NgModule({
