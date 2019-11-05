@@ -18,7 +18,7 @@ export class RepositoriesComponent implements OnInit {
 
     dataSource: RepositoriesDataSource;
     displayedColumns= ["RepoId", "RepositoryName","OwnerName","State","Url"];
-
+    length: number[] =  [5,10,20];
     filter: Filter;
 
     @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
@@ -33,7 +33,7 @@ export class RepositoriesComponent implements OnInit {
         this.filter = {
             Id:0,
             PageNumber : 0,
-            PageSize : 2,
+            PageSize : this.length[0],
             SearchText : "",
             SortOrder : "asc"
         };

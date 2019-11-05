@@ -18,6 +18,7 @@ export class BranchComponent implements OnInit {
     branchDataSource : BranchDataSource;
 
     displayedColumns: string[] = ["BranchName","Sha"];
+    length: number[] =  [5,10,20];
     @ViewChild(MatPaginator,{static : false}) paginator: MatPaginator;
 
     constructor(private repositoryService:RepositoriesService, private router:Router) { }
@@ -26,7 +27,7 @@ export class BranchComponent implements OnInit {
         this.filter = {
             Id:0,
             PageNumber : 0,
-            PageSize : 2,
+            PageSize : this.length[0],
             SearchText : "",
             SortOrder : "asc"
         };

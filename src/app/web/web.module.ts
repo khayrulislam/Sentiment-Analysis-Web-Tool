@@ -28,6 +28,7 @@ import { PullRequestComponent } from './side-nav/pull-request/pull-request.compo
 import { CollaboratorComponent } from './side-nav/collaborator/collaborator.component';
 import { CommitComponent } from './side-nav/commit/commit.component';
 import { DashboardComponent } from './side-nav/dashboard/dashboard.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent],
@@ -50,7 +51,8 @@ import { DashboardComponent } from './side-nav/dashboard/dashboard.component';
     HttpClientModule,
     MatProgressBarModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxChartsModule
   ],
   entryComponents:[InputModalComponent]
 })
