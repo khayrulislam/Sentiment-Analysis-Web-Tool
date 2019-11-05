@@ -8,11 +8,6 @@ export interface Repository {
     AnalysisDate: Data,
     State: boolean,
     Url: string,
-    Branch?:any
-    RepositoryContributors?:any,
-    Commits?: any,
-    Issues?:any,
-    Contributors?:any
 }
 
 export interface RepositoryInput{
@@ -37,8 +32,6 @@ export interface Branch{
     Id: number,
     Name: string,
     Sha: string,
-    Repository?: Repository,
     RepositoryId: number,
-    BranchCommits?:any
 }
 

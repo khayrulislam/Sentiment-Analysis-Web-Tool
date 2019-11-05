@@ -44,6 +44,7 @@ export class BranchComponent implements OnInit {
                 this.router.navigateByUrl(`/not-found`);
             }
             else{
+                debugger;
                 this.repositoryId = repository.Id;
                 this.filter.Id = this.repositoryId;
                 this.branchDataSource.loadBranchData(this.filter);
