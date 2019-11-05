@@ -6,6 +6,7 @@ import { BranchComponent } from './side-nav/branch/branch.component';
 import { IssueComponent } from './side-nav/issue/issue.component';
 import { PullRequestComponent } from './side-nav/pull-request/pull-request.component';
 import { CollaboratorComponent } from './side-nav/collaborator/collaborator.component';
+import { DashboardComponent } from './side-nav/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
         path:'repository/:repositoryName',
         component: SideNavComponent,
         children:[
+            {
+                path:'dashboard',
+                component: DashboardComponent
+            },
             {
                 path: 'branch',
                 component:BranchComponent
@@ -40,7 +45,7 @@ const routes: Routes = [
             },
             {
                 path: '',
-                redirectTo: 'branch',
+                redirectTo: 'dashboard',
                 pathMatch: 'full'
             }
         ]

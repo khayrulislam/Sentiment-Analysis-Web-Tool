@@ -17,7 +17,7 @@ export class BranchComponent implements OnInit {
     private filter: Filter;
     branchDataSource : BranchDataSource;
 
-    displayedColumns: string[] = ["Id", "BranchName","Sha"];
+    displayedColumns: string[] = ["BranchName","Sha"];
     @ViewChild(MatPaginator,{static : false}) paginator: MatPaginator;
 
     constructor(private repositoryService:RepositoriesService, private router:Router) { }
@@ -40,6 +40,7 @@ export class BranchComponent implements OnInit {
 
     getCurrentRepository(){
         this.repositoryService.currentRepository.subscribe(repository =>{
+            debugger;
             if(repository ===undefined) {
                 this.router.navigateByUrl(`/not-found`);
             }

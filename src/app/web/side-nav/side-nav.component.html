@@ -16,10 +16,11 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-nav-list>
-      <a mat-list-item  routerLink="branch" routerLinkActive="true" >Branch</a>
-      <a mat-list-item  routerLink="issue" routerLinkActive="true">Issue</a>
-      <a mat-list-item  routerLink="pull-request" routerLinkActive="true">Pull Request</a>
-      <a mat-list-item  routerLink="collaborator" routerLinkActive="true">Collaborator</a>
+        <a mat-list-item  routerLink="dashboard" routerLinkActive="true" >Dashboard</a>
+        <a mat-list-item  routerLink="branch" routerLinkActive="true" >Branch</a>
+        <a mat-list-item  routerLink="issue" routerLinkActive="true">Issue</a>
+        <a mat-list-item  routerLink="pull-request" routerLinkActive="true">Pull Request</a>
+        <a mat-list-item  routerLink="collaborator" routerLinkActive="true">Collaborator</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
