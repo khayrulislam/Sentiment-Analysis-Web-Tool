@@ -1,4 +1,4 @@
-import { Filter, Repository, ModalAction } from './../../data/data';
+import { Filter, Repository, ModalAction, LocalData } from './../../data/data';
 import { RepositoriesService } from './repositories.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RepositoriesDataSource } from './repositories-data-source';
@@ -8,6 +8,7 @@ import { Router, Route } from '@angular/router';
 import { InputModalComponent } from './input-modal/input-modal.component';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { JsonpInterceptor } from '@angular/common/http';
 
 @Component({
   selector: 'app-repositories',
@@ -51,7 +52,8 @@ export class RepositoriesComponent implements OnInit {
     }
 
     showRepositoryDetail(repository:Repository){
-        this.repositoriesService.setRepositroy(repository);
+        localStorage.setItem(LocalData.Repository, JSON.stringify(repository));
+        //this.repositoriesService.setRepositroy(repository);
         this.router.navigateByUrl(`/web/repository/${repository.Name}`);
     }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RepositoriesService } from '../../repositories/repositories.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { LocalData } from 'src/app/data/data';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,43 +18,33 @@ export class DashboardComponent implements OnInit {
     };
     animation = true;
 
-    constructor(private repositoryService: RepositoriesService, private router: Router) { }
+    constructor(private repositoryService: RepositoriesService, private router: Router, private r:ActivatedRoute) { }
 
     ngOnInit() {
         this.getCurrentRepository();
     }
 
     getCurrentRepository(){
-        this.repositoryService.currentRepository.subscribe(repository =>{
-            debugger;
-            if(repository ===undefined) {
-                this.router.navigateByUrl(`/not-found`);
-            }
-            else{
-                this.loadDashboardData(repository.Id);
-            }
-        },err=>{
-            console.log(err);
-        });
+        let repository =  JSON.parse(localStorage.getItem(LocalData.Repository)); 
+        if(repository ===undefined) this.router.navigateByUrl(`/not-found`);
+        else this.loadDashboardData(repository.Id);
     }
 
     loadDashboardData(repoId:number){
         this.repositoryService.dashboardDataList(String(repoId)).subscribe( (response : any) =>{
             this.result = response;
-            console.log("data "+ response);
         });
     }
 
     onSelect(event){
-        if(event.extra.code === "branch") this.router.navigate(['branch']);
-        else if (event.extra.code === "issue") this.router.navigate(['issue']);
-        else if (event.extra.code === "collaborator") this.router.navigate(['collaborator']);
-        else if (event.extra.code === "issue") this.router.navigate(['issue']);
-        else if (event.extra.code === "issue") this.router.navigate(['issue']);
-        else if (event.extra.code === "issue") this.router.navigate(['issue']);
-        else if (event.extra.code === "issue") this.router.navigate(['issue']);
-
-
+        if(event.extra.code === "branch") this.router.navigate(['../branch'],{ relativeTo: this.r });
+        else if (event.extra.code === "issue") this.router.navigate(['../issue'], {relativeTo: this.r});
+        else if (event.extra.code === "collaborator") this.router.navigate(['../collaborator'],{relativeTo:this.r});
+        else if (event.extra.code === "pull_request") this.router.navigate(['../pull-request'],{relativeTo:this.r});
+        else if (event.extra.code === "commit") this.router.navigate(['../commit'],{relativeTo:this.r});
+        else if (event.extra.code === "commit_comment") this.router.navigate(['../commit'],{relativeTo:this.r});
+        else if (event.extra.code === "issue_comment") this.router.navigate(['../issue'],{relativeTo:this.r});
+        else if (event.extra.code === "pull_request_comment") this.router.navigate(['../pull-request'],{relativeTo:this.r});
     }
 
 

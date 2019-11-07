@@ -3,7 +3,7 @@ import { RepositoriesService } from '../../repositories/repositories.service';
 import { BranchDataSource } from './branch-data-source';
 import { MatPaginator } from '@angular/material';
 import { tap } from 'rxjs/operators';
-import { Filter } from 'src/app/data/data';
+import { Filter, LocalData } from 'src/app/data/data';
 import { Router } from '@angular/router';
 
 @Component({
@@ -40,20 +40,15 @@ export class BranchComponent implements OnInit {
     }
 
     getCurrentRepository(){
-        this.repositoryService.currentRepository.subscribe(repository =>{
-            debugger;
-            if(repository ===undefined) {
-                this.router.navigateByUrl(`/not-found`);
-            }
-            else{
-                debugger;
-                this.repositoryId = repository.Id;
-                this.filter.Id = this.repositoryId;
-                this.branchDataSource.loadBranchData(this.filter);
-            }
-        },err=>{
-            console.log(err);
-        });
+        let repository =  JSON.parse(localStorage.getItem(LocalData.Repository)); 
+        if(repository === undefined) {
+            this.router.navigateByUrl(`/not-found`);
+        }
+        else{
+            this.repositoryId = repository.Id;
+            this.filter.Id = this.repositoryId;
+            this.branchDataSource.loadBranchData(this.filter);
+        }
     }
 
     loadBranchData(){

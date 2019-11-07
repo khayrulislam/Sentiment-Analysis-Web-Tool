@@ -35,3 +35,6 @@ export interface Branch{
     RepositoryId: number,
 }
 
+export enum LocalData{
+    Repository = "repository"
+}
