@@ -38,4 +38,9 @@ export class RepositoriesService {
     branchFilterList(filter:Filter): Observable<Entries<Branch>>{
         return this.http.post<Entries<Branch>>(base_url+"/api/branch/GetBranchFilterList",filter);
     }
+
+    dashboardDataList(repoId: string): Observable<any>{
+        return this.http.get<any>(base_url+"/api/dashboard/GetDashboardData",{params:{repoId:repoId}});
+    }
+
 }
