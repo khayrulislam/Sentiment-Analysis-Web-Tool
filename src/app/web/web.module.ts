@@ -29,6 +29,7 @@ import { CollaboratorComponent } from './side-nav/collaborator/collaborator.comp
 import { CommitComponent } from './side-nav/commit/commit.component';
 import { DashboardComponent } from './side-nav/dashboard/dashboard.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent],
@@ -52,7 +53,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatProgressBarModule,
     MatDialogModule,
     ReactiveFormsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    NgxSpinnerModule
   ],
   entryComponents:[InputModalComponent]
 })

@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Filter, Repository, ModalAction, LocalData } from './../../data/data';
 import { RepositoriesService } from './repositories.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -25,12 +26,12 @@ export class RepositoriesComponent implements OnInit {
     @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
     
     constructor(private repositoriesService:RepositoriesService, private router:Router,
-        private matDialog:MatDialog) {
+        private matDialog:MatDialog,private spinner:NgxSpinnerService) {
         
     }
 
     ngOnInit() {
-        this.dataSource = new RepositoriesDataSource(this.repositoriesService);
+        this.dataSource = new RepositoriesDataSource(this.repositoriesService,this.spinner);
         this.filter = {
             Id:0,
             PageNumber : 0,

@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RepositoriesService } from '../../repositories/repositories.service';
 import { BranchDataSource } from './branch-data-source';
@@ -21,7 +22,7 @@ export class BranchComponent implements OnInit {
     length: number[] =  [5,10,20];
     @ViewChild(MatPaginator,{static : false}) paginator: MatPaginator;
 
-    constructor(private repositoryService:RepositoriesService, private router:Router) { }
+    constructor(private repositoryService:RepositoriesService, private router:Router, private spinner:NgxSpinnerService) { }
 
     ngOnInit() {
         this.filter = {
@@ -31,7 +32,7 @@ export class BranchComponent implements OnInit {
             SearchText : "",
             SortOrder : "asc"
         };
-        this.branchDataSource = new BranchDataSource(this.repositoryService);
+        this.branchDataSource = new BranchDataSource(this.repositoryService,this.spinner);
         this.getCurrentRepository();
     }
 

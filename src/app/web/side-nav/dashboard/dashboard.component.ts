@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
 import { RepositoriesService } from '../../repositories/repositories.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -18,7 +19,8 @@ export class DashboardComponent implements OnInit {
     };
     animation = true;
 
-    constructor(private repositoryService: RepositoriesService, private router: Router, private r:ActivatedRoute) { }
+    constructor(private repositoryService: RepositoriesService, private router: Router, 
+        private r:ActivatedRoute, private spinner:NgxSpinnerService) { }
 
     ngOnInit() {
         this.getCurrentRepository();
@@ -31,8 +33,11 @@ export class DashboardComponent implements OnInit {
     }
 
     loadDashboardData(repoId:number){
+        debugger;
+        this.spinner.show();
         this.repositoryService.dashboardDataList(String(repoId)).subscribe( (response : any) =>{
             this.result = response;
+            this.spinner.hide();
         });
     }
 

@@ -5,6 +5,7 @@ import { CollectionViewer } from '@angular/cdk/collections';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { Entries } from 'src/app/data/entries';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export class RepositoriesDataSource implements DataSource<Repository>{
    
@@ -14,7 +15,7 @@ export class RepositoriesDataSource implements DataSource<Repository>{
     public loading$ = this.loadingSubject.asObservable();
     public totlaData;
 
-    constructor(private repositoriesService:RepositoriesService){
+    constructor(private repositoriesService:RepositoriesService, private spinner:NgxSpinnerService){
     }
 
     connect(collectionViewer:CollectionViewer): Observable<Repository[] | readonly Repository[]> {
@@ -28,6 +29,7 @@ export class RepositoriesDataSource implements DataSource<Repository>{
 
     loadRepositoryies(){
         this.loadingSubject.next(true);
+        this.spinner.show();
         this.repositoriesService.repositoryList()
         .pipe(
             catchError( ()=>of([])),
@@ -36,11 +38,13 @@ export class RepositoriesDataSource implements DataSource<Repository>{
         .subscribe((data:Entries<Repository>)=>{
             this.repositoriesSubject.next(data.Data);
             this.totlaData = data.TotalData;
+            this.spinner.hide();
         });
     }
 
     loadFilterRepositoryies(filter: Filter){
         this.loadingSubject.next(true);
+
         this.repositoriesService.repositoryFilterList(filter)
         .pipe(
             catchError( ()=>of([])),
