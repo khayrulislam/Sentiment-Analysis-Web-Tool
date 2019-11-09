@@ -30,6 +30,7 @@ import { CommitComponent } from './side-nav/commit/commit.component';
 import { DashboardComponent } from './side-nav/dashboard/dashboard.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent],
@@ -54,7 +55,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     MatDialogModule,
     ReactiveFormsModule,
     NgxChartsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    HighchartsChartModule
   ],
   entryComponents:[InputModalComponent]
 })

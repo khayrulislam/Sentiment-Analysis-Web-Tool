@@ -24,6 +24,8 @@
     "@angular/router": "^8.2.13",
     "@swimlane/ngx-charts": "^12.0.1",
     "hammerjs": "^2.0.8",
+    "highcharts": "^7.2.1",
+    "highcharts-angular": "^2.4.0",
     "ngx-spinner": "^8.0.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

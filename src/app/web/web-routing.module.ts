@@ -1,3 +1,4 @@
+import { CommitComponent } from './side-nav/commit/commit.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RepositoriesComponent } from './repositories/repositories.component';
@@ -29,7 +30,13 @@ const routes: Routes = [
             },
             {
                 path: 'branch',
-                component:BranchComponent
+                component:BranchComponent,
+                children:[
+                    {
+                        path:'commit',
+                        component:CommitComponent
+                    }
+                ]
             },
             {
                 path: 'issue',
@@ -42,6 +49,10 @@ const routes: Routes = [
             {
                 path: 'collaborator',
                 component: CollaboratorComponent
+            },
+            {
+                path:'commit',
+                component:CommitComponent
             },
             {
                 path: '',
