@@ -36,6 +36,9 @@ export class SideNavComponent implements OnInit {
         debugger;
         if(clickItem === NavigationItem.Dashboard) this.router.navigate(['dashboard'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
         else if(clickItem === NavigationItem.Branch) this.router.navigate(['branch'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
+        else if(clickItem === NavigationItem.Issue) this.router.navigate(['issue'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
+        else if(clickItem === NavigationItem.PullRequest) this.router.navigate(['pull-request'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
+        else if(clickItem === NavigationItem.Collaborator) this.router.navigate(['collaborator'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
     
     }
 
