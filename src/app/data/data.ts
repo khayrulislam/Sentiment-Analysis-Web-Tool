@@ -38,3 +38,11 @@ export interface Branch{
 export enum LocalData{
     Repository = "repository"
 }
+
+export enum NavigationItem{
+    Dashboard = "dashboard",
+    Branch = "branch",
+    Issue = "issue",
+    PullRequest = "pull-request",
+    Collaborator = "collaborator"
+}

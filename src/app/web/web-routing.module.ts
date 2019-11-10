@@ -21,7 +21,7 @@ const routes: Routes = [
         component: RepositoriesComponent
     },
     {
-        path:'repository/:repositoryName',
+        path:'repository',
         component: SideNavComponent,
         children:[
             {

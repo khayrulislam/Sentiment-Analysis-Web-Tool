@@ -5,7 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { RepositoriesDataSource } from './repositories-data-source';
 import { MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { tap } from 'rxjs/operators';
-import { Router, Route } from '@angular/router';
+import { Router, Route, ActivatedRoute } from '@angular/router';
 import { InputModalComponent } from './input-modal/input-modal.component';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -26,7 +26,7 @@ export class RepositoriesComponent implements OnInit {
     @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
     
     constructor(private repositoriesService:RepositoriesService, private router:Router,
-        private matDialog:MatDialog,private spinner:NgxSpinnerService) {
+        private matDialog:MatDialog,private spinner:NgxSpinnerService, private r:ActivatedRoute) {
         
     }
 
@@ -55,7 +55,9 @@ export class RepositoriesComponent implements OnInit {
     showRepositoryDetail(repository:Repository){
         localStorage.setItem(LocalData.Repository, JSON.stringify(repository));
         //this.repositoriesService.setRepositroy(repository);
-        this.router.navigateByUrl(`/web/repository/${repository.Name}`);
+        // this.router.navigateByUrl(`/web/repository/${repository.Name}`);
+        this.router.navigate(['../repository'],{queryParams:{name:repository.Name}, relativeTo:this.r});
+        // this.router.navigateByUrl(`/web/repository/dashboard?name=${repository.Name}`);
     }
 
     openInputModal(){

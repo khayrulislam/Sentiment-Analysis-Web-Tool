@@ -28,8 +28,10 @@ export class DashboardComponent implements OnInit {
 
     getCurrentRepository(){
         let repository =  JSON.parse(localStorage.getItem(LocalData.Repository)); 
-        if(repository ===undefined) this.router.navigateByUrl(`/not-found`);
-        else this.loadDashboardData(repository.Id);
+        //debugger;
+        //if(repository === undefined) this.router.navigateByUrl(`/not-found`);
+        //else 
+        this.loadDashboardData(repository.Id);
     }
 
     loadDashboardData(repoId:number){
