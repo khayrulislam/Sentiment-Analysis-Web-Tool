@@ -5,11 +5,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { RepositoriesDataSource } from './repositories-data-source';
 import { MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { tap } from 'rxjs/operators';
-import { Router, Route, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { InputModalComponent } from './input-modal/input-modal.component';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { JsonpInterceptor } from '@angular/common/http';
 
 @Component({
   selector: 'app-repositories',
@@ -54,22 +53,16 @@ export class RepositoriesComponent implements OnInit {
 
     showRepositoryDetail(repository:Repository){
         localStorage.setItem(LocalData.Repository, JSON.stringify(repository));
-        //this.repositoriesService.setRepositroy(repository);
-        // this.router.navigateByUrl(`/web/repository/${repository.Name}`);
         this.router.navigate(['../repository'],{queryParams:{name:repository.Name}, relativeTo:this.r});
-        // this.router.navigateByUrl(`/web/repository/dashboard?name=${repository.Name}`);
     }
 
     openInputModal(){
-        console.log("open modal");
-
         const matDialogConfig = new MatDialogConfig();
         matDialogConfig.autoFocus = true;
         matDialogConfig.width = '400px';
         //matDialogConfig.disableClose = true;
         let openDialogRef = this.matDialog.open(InputModalComponent,matDialogConfig);
         openDialogRef.afterClosed().subscribe(res =>{
-            
             if(res.event == ModalAction.ANALYSIS){
                 this.repositoriesService.repositoryAnalysis(res.data).pipe(
                     catchError( ()=> of([])),

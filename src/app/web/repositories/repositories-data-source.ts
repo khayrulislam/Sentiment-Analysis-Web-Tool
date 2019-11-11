@@ -29,16 +29,18 @@ export class RepositoriesDataSource implements DataSource<Repository>{
 
     loadRepositoryies(){
         this.loadingSubject.next(true);
-        this.spinner.show();
+
+        //this.spinner.show();
         this.repositoriesService.repositoryList()
         .pipe(
             catchError( ()=>of([])),
             finalize(()=>this.loadingSubject.next(false))
             )
         .subscribe((data:Entries<Repository>)=>{
+            debugger;
             this.repositoriesSubject.next(data.Data);
             this.totlaData = data.TotalData;
-            this.spinner.hide();
+            //this.spinner.hide();
         });
     }
 

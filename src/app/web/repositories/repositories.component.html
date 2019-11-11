@@ -1,3 +1,4 @@
+<!-- <ngx-spinner></ngx-spinner> -->
 <mat-toolbar color="primary">
     <!-- <button
         type="button"
@@ -26,6 +27,7 @@
         </mat-card>
     </div>
     <div class=" mat-elevation-z8" >
+
         <mat-progress-bar *ngIf="dataSource.loading$ | async" mode="indeterminate"></mat-progress-bar>
        
         <mat-table [dataSource]="dataSource">

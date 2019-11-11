@@ -44,5 +44,13 @@ export enum NavigationItem{
     Branch = "branch",
     Issue = "issue",
     PullRequest = "pull-request",
-    Collaborator = "collaborator"
+    Collaborator = "collaborator",
+    Commit = "commit",
+    CommitComment = "commit-comment",
+    IssueComment = "issue-comment",
+    PullRequestComment = "pull-request-comment",
+}
+
+export enum Parameter{
+    Name = "name"
 }

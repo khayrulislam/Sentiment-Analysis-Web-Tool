@@ -7,6 +7,7 @@ import { NotFoundComponent } from './shared-components/not-found/not-found.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { MainModule } from './main/main.module';
 import { WebModule } from './web/web.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { WebModule } from './web/web.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     //MainModule,
     WebModule
   ],
