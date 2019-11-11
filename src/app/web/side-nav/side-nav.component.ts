@@ -33,11 +33,30 @@ export class SideNavComponent implements OnInit {
     }
 
     onNavigate(clickItem:string){
-        if(clickItem === NavigationItem.Dashboard) this.router.navigate(['dashboard'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
-        else if(clickItem === NavigationItem.Branch) this.router.navigate(['branch'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
-        else if(clickItem === NavigationItem.Issue) this.router.navigate(['issue'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
-        else if(clickItem === NavigationItem.PullRequest) this.router.navigate(['pull-request'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
-        else if(clickItem === NavigationItem.Collaborator) this.router.navigate(['collaborator'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
+
+        switch(clickItem){
+            case NavigationItem.Dashboard:
+                this.router.navigate(['dashboard'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
+                break;
+            case NavigationItem.Branch:
+                this.router.navigate(['branch'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
+                break;
+            case NavigationItem.Issue:
+                this.router.navigate(['issue'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
+                break;
+            case NavigationItem.PullRequest:
+                this.router.navigate(['pull-request'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
+                break;
+            case NavigationItem.Collaborator:
+                this.router.navigate(['collaborator'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
+                break;
+            case NavigationItem.Commit:
+                this.router.navigate(['commit'],{queryParams:{name:this.repository.Name}, relativeTo:this.r});
+                break;
+            default:
+                break;
+        }
+   
     }
 
 }

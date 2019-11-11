@@ -1,9 +1,23 @@
 <!-- <div id="container" style="min-width: 310px; max-width: 900px; height: 400px; margin: 0 auto"></div> -->
 
-<div>
+<div >
     <highcharts-chart 
     [Highcharts]="Highcharts"
+    [constructorType]="chartConstructor"
     [options]="chartOptions"
-    style="width: 100%; height: 400px; display: inline-block"
+    [(update)]="updateFromInput"
+    style="width: 100%; height: 300px; display: inline-block"
   ></highcharts-chart>
+</div>
+
+
+<div>
+
+    <ngx-charts-advanced-pie-chart
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="result"
+      (select)="onSelect($event)">
+    </ngx-charts-advanced-pie-chart>
+
 </div>

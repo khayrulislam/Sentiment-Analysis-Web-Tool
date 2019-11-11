@@ -43,4 +43,8 @@ export class RepositoriesService {
         return this.http.get<any>(base_url+"/api/dashboard/GetDashboardData",{params:{repoId:repoId}});
     }
 
+    commitChartDataList(repoId: string,option:string):Observable<any>{
+        return this.http.get<any>(base_url+"/api/commit/GetOnlySentimentCommitData",{params:{repoId:repoId,option:option}});
+    }
+
 }
