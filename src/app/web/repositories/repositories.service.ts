@@ -1,4 +1,4 @@
-import { Repository, Filter, RepositoryInput, Branch } from './../../data/data';
+import { Repository, Filter, RepositoryInput, Branch, ChartParams, BranchChartParams } from './../../data/data';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -43,8 +43,12 @@ export class RepositoriesService {
         return this.http.get<any>(base_url+"/api/dashboard/GetDashboardData",{params:{repoId:repoId}});
     }
 
-    commitChartDataList(repoId: string,option:string):Observable<any>{
-        return this.http.get<any>(base_url+"/api/commit/GetOnlySentimentCommitData",{params:{repoId:repoId,option:option}});
+    commitChartDataList(chartParams: ChartParams):Observable<any>{
+        return this.http.post<any>(base_url+"/api/commit/GetSentimentData",chartParams);
+    }
+
+    branchCommitChartDataList(branchChartParams: BranchChartParams): Observable<any>{
+        return this.http.post<any>(base_url+"/api/commit/GetCommitSentimentData",branchChartParams);
     }
 
 }

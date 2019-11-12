@@ -1,18 +1,21 @@
-import { NgxSpinnerService } from 'ngx-spinner';
-import { RepositoriesService } from './../../repositories/repositories.service';
+import { BranchChartParams } from './../../../../data/data';
+import { RepositoriesService } from './../../../repositories/repositories.service';
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import * as Highcharts from 'highcharts';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LocalData, Repository, ChartParams, Parameter } from 'src/app/data/data';
+import { LocalData, Repository, ChartParams, Parameter, Branch } from 'src/app/data/data';
+
 
 @Component({
-  selector: 'app-commit',
-  templateUrl: './commit.component.html',
-  styleUrls: ['./commit.component.scss']
+  selector: 'app-b-commit',
+  templateUrl: './b-commit.component.html',
+  styleUrls: ['./b-commit.component.scss']
 })
-export class CommitComponent implements OnInit {
+export class BCommitComponent implements OnInit {
 
     repository: Repository;
+    branch: Branch;
     Highcharts: typeof Highcharts ;
     chartConstructor = "chart";
     updateFromInput = false;
@@ -89,8 +92,11 @@ export class CommitComponent implements OnInit {
     ngOnInit() {
         this.Highcharts = Highcharts;
         this.repository =  JSON.parse(localStorage.getItem(LocalData.Repository)); 
+        this.branch = JSON.parse(localStorage.getItem(LocalData.Branch)); 
+        debugger;
         this.chartParams = {
             RepoId: this.repository.Id,
+            //BranchId: this.branch.Id,
             Option: Parameter.Only
         }
         this.loadCommitData( String(this.repository.Id) );
@@ -114,5 +120,4 @@ export class CommitComponent implements OnInit {
     onSelect(event:any){
 
     }
-
 }

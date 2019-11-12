@@ -1,3 +1,4 @@
+import { Branch, ChartParams } from './data';
 import { Data } from '@angular/router'
 
 export interface Repository {
@@ -36,7 +37,8 @@ export interface Branch{
 }
 
 export enum LocalData{
-    Repository = "repository"
+    Repository = "repository",
+    Branch = "branch"
 }
 
 export enum NavigationItem{
@@ -52,5 +54,17 @@ export enum NavigationItem{
 }
 
 export enum Parameter{
-    Name = "name"
+    Name = "name",
+    All = "all",
+    Only = "only"
+}
+
+
+export interface ChartParams{
+    RepoId : number,
+    Option : string
+}
+
+export interface BranchChartParams extends ChartParams {
+    BranchId: number,
 }
