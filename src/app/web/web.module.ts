@@ -32,9 +32,10 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { HighchartsChartModule } from 'highcharts-angular';
 import { BCommitComponent } from './side-nav/branch/b-commit/b-commit.component';
+import { TempComponent } from './side-nav/branch/temp/temp.component';
 
 @NgModule({
-  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent, BCommitComponent],
+  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent, BCommitComponent, TempComponent],
   imports: [
     CommonModule,
     WebRoutingModule,

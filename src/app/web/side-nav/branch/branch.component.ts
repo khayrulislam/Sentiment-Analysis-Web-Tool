@@ -66,7 +66,7 @@ export class BranchComponent implements OnInit {
     showCommit(row:any){
         this.branchCommit = true;
         localStorage.setItem(LocalData.Branch, JSON.stringify(row) );
-        this.router.navigate(['commit'],{queryParams:{name:this.repository.Name,branch:row.Name}, relativeTo:this.r});
+        this.router.navigate(['../commit'],{queryParams:{name:this.repository.Name,branch:row.Name}, relativeTo:this.r});
     }
 
 }

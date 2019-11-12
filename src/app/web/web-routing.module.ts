@@ -9,6 +9,7 @@ import { PullRequestComponent } from './side-nav/pull-request/pull-request.compo
 import { CollaboratorComponent } from './side-nav/collaborator/collaborator.component';
 import { DashboardComponent } from './side-nav/dashboard/dashboard.component';
 import { BCommitComponent } from './side-nav/branch/b-commit/b-commit.component';
+import { TempComponent } from './side-nav/branch/temp/temp.component';
 
 
 const routes: Routes = [
@@ -31,11 +32,20 @@ const routes: Routes = [
             },
             {
                 path: 'branch',
-                component:BranchComponent,
+                component:TempComponent,
                 children:[
                     {
                         path:'commit',
                         component:BCommitComponent
+                    },
+                    {
+                        path:'bra',
+                        component: BranchComponent
+                    },
+                    {
+                        path:'',
+                        redirectTo: 'bra',
+                        pathMatch: 'full'
                     }
                 ]
             },
