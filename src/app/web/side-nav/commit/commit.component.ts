@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalData, Repository, ChartParams, Parameter } from 'src/app/data/data';
+import { Chart } from 'highcharts';
 
 @Component({
   selector: 'app-commit',
@@ -13,7 +14,7 @@ import { LocalData, Repository, ChartParams, Parameter } from 'src/app/data/data
 export class CommitComponent implements OnInit {
 
     repository: Repository;
-    Highcharts: typeof Highcharts ;
+    highcharts: typeof Highcharts ;
     chartConstructor = "chart";
     updateFromInput = false;
     chartOptions: Highcharts.Options =  {
@@ -71,14 +72,23 @@ export class CommitComponent implements OnInit {
             name: 'Sentiment chart'
         }]
     };
-
    
     result: any[];
     multi: any[];
-    view: any[] = [900, 400];
+    view: any[] = [800, 400];
     colorScheme = {
       domain: ['#FF9800', '#4CAF50', '#F44334', '#00BCD4','#9C27B0','#E81E63','#6C757D', '#673AB7']
     };
+    showLabels = true;
+    explodeSlices = false;
+    doughnut = false;
+    showLegend = true;
+    showXAxis = true;
+    showYAxis = true;
+    showXAxisLabel = true;
+    xAxisLabel = 'Country';
+    showYAxisLabel = true;
+    yAxisLabel = 'Population';
 
     chartParams: ChartParams;
 
@@ -87,12 +97,18 @@ export class CommitComponent implements OnInit {
         private repositoryService: RepositoriesService, private spinner:NgxSpinnerService) { }
 
     ngOnInit() {
-        this.Highcharts = Highcharts;
+        this.repositoryService.menuClickEventSend.subscribe( response =>{
+            if(response==="menuClick") {
+                setTimeout( () => {window.dispatchEvent(new Event('resize')); }, 50 );
+                
+            }
+        });
+        this.highcharts = Highcharts;
         this.repository =  JSON.parse(localStorage.getItem(LocalData.Repository)); 
         this.chartParams = {
             RepoId: this.repository.Id,
-            Option: Parameter.Only
-        }
+            Option: Parameter.All
+        };
         this.loadCommitData( String(this.repository.Id) );
     }
 

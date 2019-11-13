@@ -83,7 +83,7 @@ export class BCommitComponent implements OnInit {
       domain: ['#FF9800', '#4CAF50', '#F44334', '#00BCD4','#9C27B0','#E81E63','#6C757D', '#673AB7']
     };
 
-    chartParams: ChartParams;
+    chartParams: BranchChartParams;
 
 
     constructor(private route:ActivatedRoute, private rout: Router, 
@@ -96,7 +96,7 @@ export class BCommitComponent implements OnInit {
         debugger;
         this.chartParams = {
             RepoId: this.repository.Id,
-            //BranchId: this.branch.Id,
+            BranchId: this.branch.Id,
             Option: Parameter.Only
         }
         this.loadCommitData( String(this.repository.Id) );
@@ -104,7 +104,7 @@ export class BCommitComponent implements OnInit {
 
     loadCommitData(repoId:string){
         this.spinner.show();
-        this.repositoryService.commitChartDataList(this.chartParams).subscribe( response=>{
+        this.repositoryService.branchCommitChartDataList(this.chartParams).subscribe( response=>{
             this.chartOptions.series = [{
                 data: response.LineData,
                 type: 'line',

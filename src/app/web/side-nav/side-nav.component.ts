@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { RepositoriesService } from './../repositories/repositories.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalData, NavigationItem, Repository } from 'src/app/data/data';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-side-nav',
@@ -12,6 +14,7 @@ import { LocalData, NavigationItem, Repository } from 'src/app/data/data';
 })
 export class SideNavComponent implements OnInit {
 
+    @ViewChild("drawer",{static:false}) drawer: MatSidenav;
     repository: Repository;    
 
     isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -21,7 +24,7 @@ export class SideNavComponent implements OnInit {
     );
 
     constructor(private breakpointObserver: BreakpointObserver, private router:Router,
-        private r:ActivatedRoute) {}
+        private r:ActivatedRoute, private repositoryService: RepositoriesService) {}
 
     ngOnInit(){
         this.repository =  JSON.parse(localStorage.getItem(LocalData.Repository)); 
@@ -57,6 +60,11 @@ export class SideNavComponent implements OnInit {
                 break;
         }
    
+    }
+
+    onMenuClick(){
+        this.drawer.toggle();
+        this.repositoryService.setClickEvent("menuClick");
     }
 
 }
