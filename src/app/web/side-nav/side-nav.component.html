@@ -10,7 +10,7 @@
 
     <button mat-button disableRipple="true" (click)="openStartPage()" >Sentiment-Web</button>    
 </mat-toolbar>
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" auto>
   <mat-sidenav #drawer class="sidenav" fixedInViewport = false
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"

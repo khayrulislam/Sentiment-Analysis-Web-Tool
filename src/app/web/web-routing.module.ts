@@ -10,6 +10,7 @@ import { CollaboratorComponent } from './side-nav/collaborator/collaborator.comp
 import { DashboardComponent } from './side-nav/dashboard/dashboard.component';
 import { BCommitComponent } from './side-nav/branch/b-commit/b-commit.component';
 import { TempComponent } from './side-nav/branch/temp/temp.component';
+import { ListComponent } from './side-nav/branch/list/list.component';
 
 
 const routes: Routes = [
@@ -32,19 +33,19 @@ const routes: Routes = [
             },
             {
                 path: 'branch',
-                component:TempComponent,
+                component:BranchComponent,
                 children:[
                     {
                         path:'commit',
                         component:BCommitComponent
                     },
                     {
-                        path:'bra',
-                        component: BranchComponent
+                        path:'list',
+                        component: ListComponent
                     },
                     {
                         path:'',
-                        redirectTo: 'bra',
+                        redirectTo: 'list',
                         pathMatch: 'full'
                     }
                 ]
