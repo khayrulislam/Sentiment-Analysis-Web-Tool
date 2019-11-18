@@ -99,7 +99,6 @@ export class CommitComponent implements OnInit {
         this.repositoryService.menuClickEventSend.subscribe( response =>{
             if(response==="menuClick") {
                 setTimeout( () => {window.dispatchEvent(new Event('resize')); }, 50 );
-                
             }
         });
         this.highcharts = Highcharts;
