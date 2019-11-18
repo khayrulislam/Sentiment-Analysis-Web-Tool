@@ -3,7 +3,7 @@ import { RepositoriesService } from './../../repositories/repositories.service';
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LocalData, Repository, ChartParams, Parameter } from 'src/app/data/data';
+import { LocalData, Repository, ChartParams, Parameter, SelectOption } from 'src/app/data/data';
 import { Chart } from 'highcharts';
 
 @Component({
@@ -91,6 +91,8 @@ export class CommitComponent implements OnInit {
 
     chartParams: ChartParams;
 
+    options: SelectOption[];
+    selectedOption: string;
 
     constructor(private route:ActivatedRoute, private rout: Router, 
         private repositoryService: RepositoriesService, private spinner:NgxSpinnerService) { }
@@ -107,6 +109,11 @@ export class CommitComponent implements OnInit {
             RepoId: this.repository.Id,
             Option: Parameter.Only
         };
+        this.options= [
+            { viewValue: "Only", value:"only"},
+            { viewValue: "All", value:"all"}
+        ];
+        this.selectedOption = this.options[0].value;
         this.loadCommitData( String(this.repository.Id) );
     }
 
@@ -124,9 +131,12 @@ export class CommitComponent implements OnInit {
         } );
     }
 
+    onChangeOption(event:any){
+        this.chartParams.Option =  this.selectedOption;
+        this.loadCommitData( String(this.repository.Id) );
+    }
 
     onSelect(event:any){
-
     }
 
 }

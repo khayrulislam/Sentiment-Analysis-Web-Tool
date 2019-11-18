@@ -4,8 +4,14 @@
     <div>
         <mat-card>
             <mat-card-content > 
-                <div fxLayout="row" fxLayoutAlign="start center" >
-                    aaa
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-form-field appearance="outline">
+                        <mat-select [(value)]="selectedOption" (selectionChange) ="onChangeOption($event)">
+                            <mat-option *ngFor="let item of options" [value]="item.value">
+                                {{item.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>              
             </mat-card-content>   
         </mat-card>
@@ -24,6 +30,7 @@
                 [showYAxisLabel]="showYAxisLabel"
                 [xAxisLabel]="xAxisLabel"
                 [yAxisLabel]="yAxisLabel"
+                [animations]= true
                 (select)="onSelect($event)">
             </ngx-charts-bar-vertical>
         </div>

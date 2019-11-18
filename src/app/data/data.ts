@@ -59,7 +59,6 @@ export enum Parameter{
     Only = "only"
 }
 
-
 export interface ChartParams{
     RepoId : number,
     Option : string
@@ -67,4 +66,9 @@ export interface ChartParams{
 
 export interface BranchChartParams extends ChartParams {
     BranchId: number,
+}
+
+export interface SelectOption{
+    value:string,
+    viewValue:string
 }

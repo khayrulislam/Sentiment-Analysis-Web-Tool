@@ -34,3 +34,16 @@ app-list{
     }
 }
 
+
+app-commit{
+    .mat-form-field-appearance-outline
+    .mat-form-field-wrapper {
+        margin: 0;
+    }
+    
+    .mat-form-field-wrapper {
+        padding-bottom: 0;
+    }
+}
+
+

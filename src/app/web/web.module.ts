@@ -19,7 +19,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule} from '@angular/flex-layout';
-import { MatProgressBarModule, MatDialogModule } from '@angular/material';
+import { MatProgressBarModule, MatDialogModule, MatSelectModule } from '@angular/material';
 import { InputModalComponent } from './repositories/input-modal/input-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BranchComponent } from './side-nav/branch/branch.component';
@@ -58,7 +58,8 @@ import { ListComponent } from './side-nav/branch/list/list.component';
     ReactiveFormsModule,
     NgxChartsModule,
     NgxSpinnerModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    MatSelectModule
   ],
   entryComponents:[InputModalComponent]
 })
