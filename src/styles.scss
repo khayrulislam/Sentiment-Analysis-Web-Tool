@@ -3,8 +3,14 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.side-nav-content{
+    width: 95%;
+    padding: 20px;
+    margin: auto;
+}
 app-list{
     .mat-form-field-wrapper {
         padding-bottom: 0px;
     }
 }
+
