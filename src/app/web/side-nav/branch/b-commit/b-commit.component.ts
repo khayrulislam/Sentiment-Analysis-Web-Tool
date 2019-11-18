@@ -77,11 +77,10 @@ export class BCommitComponent implements OnInit {
 
    
     result: any[];
-    multi: any[];
-    view: any[] = [900, 400];
     colorScheme = {
       domain: ['#FF9800', '#4CAF50', '#F44334', '#00BCD4','#9C27B0','#E81E63','#6C757D', '#673AB7']
     };
+    gradient = false;
 
     chartParams: BranchChartParams;
 
@@ -90,10 +89,14 @@ export class BCommitComponent implements OnInit {
         private repositoryService: RepositoriesService, private spinner:NgxSpinnerService) { }
 
     ngOnInit() {
+        this.repositoryService.menuClickEventSend.subscribe( response =>{
+            if(response==="menuClick") {
+                setTimeout( () => {window.dispatchEvent(new Event('resize')); }, 50 );
+            }
+        });
         this.Highcharts = Highcharts;
         this.repository =  JSON.parse(localStorage.getItem(LocalData.Repository)); 
         this.branch = JSON.parse(localStorage.getItem(LocalData.Branch)); 
-        debugger;
         this.chartParams = {
             RepoId: this.repository.Id,
             BranchId: this.branch.Id,

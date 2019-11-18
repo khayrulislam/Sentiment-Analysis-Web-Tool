@@ -98,7 +98,7 @@ export class CommitComponent implements OnInit {
     ngOnInit() {
         this.repositoryService.menuClickEventSend.subscribe( response =>{
             if(response==="menuClick") {
-                setTimeout( () => {window.dispatchEvent(new Event('resize')); }, 50 );
+                setTimeout( () => {window.dispatchEvent(new Event('resize')); }, 100 );
             }
         });
         this.highcharts = Highcharts;

@@ -1,29 +1,43 @@
 
 <div class="side-nav-content">
-
-    <div class="bar-chart">
-        <ngx-charts-bar-vertical
-            [scheme]="colorScheme"
-            [results]="result"
-            [xAxis]="showXAxis"
-            [yAxis]="showYAxis"
-            [legend]="showLegend"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [xAxisLabel]="xAxisLabel"
-            [yAxisLabel]="yAxisLabel"
-            (select)="onSelect($event)">
-        </ngx-charts-bar-vertical>
+    
+    <div>
+        <mat-card>
+            <mat-card-content > 
+                <div fxLayout="row" fxLayoutAlign="start center" >
+                    aaa
+                </div>              
+            </mat-card-content>   
+        </mat-card>
     </div>
 
-    <div>
-        <highcharts-chart class="time-chart"
-            [Highcharts]="highcharts"
-            [constructorType]="chartConstructor"
-            [options]="chartOptions"
-            [(update)]="updateFromInput"
-            >
-        </highcharts-chart>
+    <div class="mat-elevation-z8">
+
+        <div class="bar-chart">
+            <ngx-charts-bar-vertical
+                [scheme]="colorScheme"
+                [results]="result"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                (select)="onSelect($event)">
+            </ngx-charts-bar-vertical>
+        </div>
+        
+        <div>
+            <highcharts-chart class="time-chart"
+                [Highcharts]="highcharts"
+                [constructorType]="chartConstructor"
+                [options]="chartOptions"
+                [(update)]="updateFromInput"
+                >
+            </highcharts-chart>
+        </div>
+
     </div>
 
 </div>

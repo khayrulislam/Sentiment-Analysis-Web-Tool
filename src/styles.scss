@@ -4,8 +4,8 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .side-nav-content{
-    width: 95%;
-    padding: 20px;
+    width: 97%;
+    padding: .5em;
     margin: auto;
 }
 .table-content{
@@ -15,6 +15,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin: 0 1em 0 1em;
 }
 app-list{
+    .mat-card{
+        padding: 0em;
+    }
+
     .mat-form-field-appearance-outline
     .mat-form-field-infix {
         padding: .65em 0 .65em 0;
