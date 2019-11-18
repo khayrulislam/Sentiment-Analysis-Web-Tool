@@ -1,13 +1,13 @@
 <div class="side-nav-content">
     
-    <div class="" fxLayout="row" fxLayoutAlign="start center" >
-        <mat-form-field appearance="outline">
+    <div class="mat-elevation-z8" fxLayout="row" fxLayoutAlign="start center" >
+        <mat-form-field class="search-box" appearance="outline">
             <mat-label>Search</mat-label>
             <input matInput placeholder="Branch name">
         </mat-form-field>
     </div>
 
-    <div class="mat-elevation-z8">
+    <div class="mat-elevation-z8 table-content">
         <!-- <mat-progress-bar *ngIf="branchDataSource.loading$ | async" mode="indeterminate"></mat-progress-bar> -->
         <mat-table [dataSource]="branchDataSource">
 
@@ -28,8 +28,7 @@
             
         </mat-table>
         
-        <mat-paginator [length]="branchDataSource.totlaData" [pageSizeOptions]="length" showFirstLastButtons>
-        </mat-paginator>
+        <mat-paginator [length]="branchDataSource.totlaData" [pageSizeOptions]="length" showFirstLastButtons></mat-paginator>
     </div>
 
 </div>
