@@ -9,7 +9,6 @@ import { PullRequestComponent } from './side-nav/pull-request/pull-request.compo
 import { CollaboratorComponent } from './side-nav/collaborator/collaborator.component';
 import { DashboardComponent } from './side-nav/dashboard/dashboard.component';
 import { BCommitComponent } from './side-nav/branch/b-commit/b-commit.component';
-import { TempComponent } from './side-nav/branch/temp/temp.component';
 import { ListComponent } from './side-nav/branch/list/list.component';
 
 
