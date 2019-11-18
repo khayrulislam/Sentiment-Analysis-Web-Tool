@@ -73,22 +73,21 @@ export class CommitComponent implements OnInit {
         }]
     };
    
+    // bra chart properties
     result: any[];
-    multi: any[];
-    view: any[] = [900, 400];
     colorScheme = {
       domain: ['#FF9800', '#4CAF50', '#F44334', '#00BCD4','#9C27B0','#E81E63','#6C757D', '#673AB7']
     };
-    showLabels = true;
-    explodeSlices = false;
-    doughnut = false;
+
     showLegend = true;
+
     showXAxis = true;
-    showYAxis = true;
     showXAxisLabel = true;
     xAxisLabel = 'Sentiment value';
+
+    showYAxis = true;
     showYAxisLabel = true;
-    yAxisLabel = 'Population';
+    yAxisLabel = 'Count';
 
     chartParams: ChartParams;
 
