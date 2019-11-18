@@ -75,7 +75,7 @@ export class CommitComponent implements OnInit {
    
     result: any[];
     multi: any[];
-    view: any[] = [800, 400];
+    view: any[] = [900, 400];
     colorScheme = {
       domain: ['#FF9800', '#4CAF50', '#F44334', '#00BCD4','#9C27B0','#E81E63','#6C757D', '#673AB7']
     };
@@ -86,7 +86,7 @@ export class CommitComponent implements OnInit {
     showXAxis = true;
     showYAxis = true;
     showXAxisLabel = true;
-    xAxisLabel = 'Country';
+    xAxisLabel = 'Sentiment value';
     showYAxisLabel = true;
     yAxisLabel = 'Population';
 
@@ -107,7 +107,7 @@ export class CommitComponent implements OnInit {
         this.repository =  JSON.parse(localStorage.getItem(LocalData.Repository)); 
         this.chartParams = {
             RepoId: this.repository.Id,
-            Option: Parameter.All
+            Option: Parameter.Only
         };
         this.loadCommitData( String(this.repository.Id) );
     }
