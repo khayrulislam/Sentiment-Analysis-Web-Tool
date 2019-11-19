@@ -14,9 +14,31 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .search-box{
     margin: 0 1em 0 1em;
 }
+
+app-repositories{
+    .mat-card{
+        padding: 0em 1em;
+    }
+
+    .mat-form-field-appearance-outline
+    .mat-form-field-infix {
+        padding: .65em 0 .65em 0;
+    }
+
+    .mat-form-field-appearance-outline 
+    .mat-form-field-wrapper {
+        margin: .5em 0;
+    }
+
+    .mat-form-field-wrapper {
+        padding-bottom: 0px;
+    }
+}
+
+
 app-list{
     .mat-card{
-        padding: 0em;
+        padding: 0em 1em;
     }
 
     .mat-form-field-appearance-outline
@@ -36,7 +58,7 @@ app-list{
 
 app-collaborator-list{
     .mat-card{
-        padding: 0em;
+        padding: 0em 1em;
     }
 
     .mat-form-field-appearance-outline

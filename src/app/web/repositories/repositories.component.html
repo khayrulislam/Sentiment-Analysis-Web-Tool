@@ -17,6 +17,14 @@
                     <div>
                         Repository List
                     </div>
+
+                    <div>
+                        <mat-form-field class="search-box" appearance="outline">
+                            <mat-label>Search</mat-label>
+                            <input matInput placeholder="Repository name" (keyup)="search($event.target.value)">
+                        </mat-form-field>
+                    </div>
+
                     <div>
                         <button mat-icon-button color="primary" title="Analyse Repository" (click)="openInputModal()" >
                             <mat-icon>add_box</mat-icon>

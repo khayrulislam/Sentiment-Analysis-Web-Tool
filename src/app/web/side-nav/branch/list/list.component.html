@@ -3,11 +3,18 @@
     <div>
         <mat-card>
             <mat-card-content > 
-                <div fxLayout="row" fxLayoutAlign="end center" >
-                    <mat-form-field class="search-box" appearance="outline">
-                        <mat-label>Search</mat-label>
-                        <input matInput placeholder="Branch name" (keyup)="search($event.target.value)">
-                    </mat-form-field>
+                <div fxLayout="row" fxLayoutAlign="space-between center" >
+
+                    <div>
+                        Branch list
+                    </div>
+                    <div>
+                        <mat-form-field class="search-box" appearance="outline">
+                            <mat-label>Search</mat-label>
+                            <input matInput placeholder="Collaborator name" (keyup)="search($event.target.value)">
+                        </mat-form-field>
+                    </div>
+
                 </div>              
             </mat-card-content>   
         </mat-card>
