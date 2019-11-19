@@ -33,9 +33,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { HighchartsChartModule } from 'highcharts-angular';
 import { BCommitComponent } from './side-nav/branch/b-commit/b-commit.component';
 import { ListComponent } from './side-nav/branch/list/list.component';
+import { CollaboratorListComponent } from './side-nav/collaborator/collaborator-list/collaborator-list.component';
 
 @NgModule({
-  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent, BCommitComponent,  ListComponent],
+  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent, BCommitComponent,  ListComponent, CollaboratorListComponent],
   imports: [
     CommonModule,
     WebRoutingModule,
