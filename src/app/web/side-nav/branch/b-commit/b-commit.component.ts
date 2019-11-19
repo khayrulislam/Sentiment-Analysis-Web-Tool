@@ -1,4 +1,4 @@
-import { BranchChartParams } from './../../../../data/data';
+import { BranchChartParams, SelectOption } from './../../../../data/data';
 import { RepositoriesService } from './../../../repositories/repositories.service';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -83,7 +83,8 @@ export class BCommitComponent implements OnInit {
     gradient = false;
 
     chartParams: BranchChartParams;
-
+    options: SelectOption[];
+    selectedOption: string;
 
     constructor(private route:ActivatedRoute, private rout: Router, 
         private repositoryService: RepositoriesService, private spinner:NgxSpinnerService) { }
@@ -102,6 +103,11 @@ export class BCommitComponent implements OnInit {
             BranchId: this.branch.Id,
             Option: Parameter.Only
         }
+        this.options= [
+            { viewValue: "Sentiment Commits", value:"only"},
+            { viewValue: "All commits", value:"all"}
+        ];
+        this.selectedOption = this.options[0].value;
         this.loadCommitData( String(this.repository.Id) );
     }
 
@@ -117,6 +123,11 @@ export class BCommitComponent implements OnInit {
             this.result = response.PieData;
             this.spinner.hide();
         } );
+    }
+
+    onChangeOption(event:any){
+        this.chartParams.Option =  this.selectedOption;
+        this.loadCommitData( String(this.repository.Id) );
     }
 
 
