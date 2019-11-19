@@ -5,7 +5,8 @@ import { MatPaginator } from '@angular/material';
 import { RepositoriesService } from 'src/app/web/repositories/repositories.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { tap } from 'rxjs/operators';
+import { tap, debounceTime } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -24,6 +25,8 @@ export class ListComponent implements OnInit {
     length: number[] =  [5,10,20];
     @ViewChild(MatPaginator,{static : false}) paginator: MatPaginator;
 
+    searchSubject : Subject<string> = new Subject();
+
     constructor(private repositoryService:RepositoriesService, private router:Router, 
         private spinner:NgxSpinnerService, private r:ActivatedRoute) { }
 
@@ -36,6 +39,10 @@ export class ListComponent implements OnInit {
             SearchText : "",
             SortOrder : "asc"
         };
+        this.searchSubject.pipe( debounceTime(500)).subscribe( (searchText) =>{
+            this.filter.SearchText = searchText;
+            this.loadBranchData();
+        });
         this.branchDataSource = new BranchDataSource(this.repositoryService,this.spinner);
         this.getCurrentRepository();
     }
@@ -66,6 +73,11 @@ export class ListComponent implements OnInit {
         this.branchCommit = true;
         localStorage.setItem(LocalData.Branch, JSON.stringify(row) );
         this.router.navigate(['../commit'],{queryParams:{name:this.repository.Name,branch:row.Name}, relativeTo:this.r});
+    }
+
+    search(searchText:string){
+        this.searchSubject.next(searchText);
+        this.paginator.pageIndex = 0;
     }
 
 }

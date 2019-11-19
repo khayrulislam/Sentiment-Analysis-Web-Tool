@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { RepositoriesService } from '../../../repositories/repositories.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { tap } from 'rxjs/operators';
+import { tap, debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -39,7 +39,9 @@ export class CollaboratorListComponent implements OnInit, OnDestroy {
             SearchText : "",
             SortOrder : "asc"
         };
-        this.searchSubject.pipe().subscribe( (SearchText:string)=>{
+        this.searchSubject.pipe(
+            debounceTime(500)
+        ).subscribe( (SearchText:string)=>{
             this.filter.SearchText = SearchText;
             this.loadCollaboratorData();
         });
