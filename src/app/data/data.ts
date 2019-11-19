@@ -1,4 +1,4 @@
-import { Branch, ChartParams } from './data';
+import { Branch, ChartParams, Contributor } from './data';
 import { Data } from '@angular/router'
 
 export interface Repository {
@@ -24,16 +24,23 @@ export interface Filter{
     SortOrder: string
 }
 
-export enum ModalAction{
-    CLOSE = "close",
-    ANALYSIS = "analysis"
-}
-
 export interface Branch{
     Id: number,
     Name: string,
     Sha: string,
     RepositoryId: number,
+}
+
+export interface Contributor{
+    Id: number,
+    Name: string,
+    ContributorId: number,
+    Contribution: number
+}
+
+export enum ModalAction{
+    CLOSE = "close",
+    ANALYSIS = "analysis"
 }
 
 export enum LocalData{

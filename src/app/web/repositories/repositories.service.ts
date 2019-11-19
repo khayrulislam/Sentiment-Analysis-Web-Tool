@@ -1,4 +1,4 @@
-import { Repository, Filter, RepositoryInput, Branch, ChartParams, BranchChartParams } from './../../data/data';
+import { Repository, Filter, RepositoryInput, Branch, ChartParams, BranchChartParams, Contributor } from './../../data/data';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -56,6 +56,10 @@ export class RepositoriesService {
 
     branchCommitChartDataList(branchChartParams: BranchChartParams): Observable<any>{
         return this.http.post<any>(API.branchCommitChartDataList,branchChartParams);
+    }
+
+    contributorFilterList(filter: Filter): Observable<Entries<Contributor>>{
+        return this.http.post<Entries<Contributor>>(API.contributorFilterList,filter);
     }
 
 }

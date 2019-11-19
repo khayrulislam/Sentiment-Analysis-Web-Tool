@@ -34,6 +34,26 @@ app-list{
     }
 }
 
+app-collaborator{
+    .mat-card{
+        padding: 0em;
+    }
+
+    .mat-form-field-appearance-outline
+    .mat-form-field-infix {
+        padding: .65em 0 .65em 0;
+    }
+
+    .mat-form-field-appearance-outline 
+    .mat-form-field-wrapper {
+        margin: .5em 0;
+    }
+
+    .mat-form-field-wrapper {
+        padding-bottom: 0px;
+    }
+}
+
 
 app-commit{
     .mat-form-field-appearance-outline
