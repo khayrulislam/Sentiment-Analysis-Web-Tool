@@ -4,8 +4,9 @@
     <div>
         <mat-card>
             <mat-card-content > 
-                <div fxLayout="row" fxLayoutAlign="start center">
+                <div fxLayout="row" fxLayoutAlign="end center">
                     <mat-form-field appearance="outline">
+                        <mat-label>Select an option</mat-label>
                         <mat-select [(value)]="selectedOption" (selectionChange) ="onChangeOption($event)">
                             <mat-option *ngFor="let item of options" [value]="item.value">
                                 {{item.viewValue}}

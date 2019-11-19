@@ -110,8 +110,8 @@ export class CommitComponent implements OnInit {
             Option: Parameter.Only
         };
         this.options= [
-            { viewValue: "Only", value:"only"},
-            { viewValue: "All ", value:"all"}
+            { viewValue: "Sentiment Commits", value:"only"},
+            { viewValue: "All commits", value:"all"}
         ];
         this.selectedOption = this.options[0].value;
         this.loadCommitData( String(this.repository.Id) );
