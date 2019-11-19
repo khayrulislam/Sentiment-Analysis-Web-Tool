@@ -2,7 +2,7 @@ import { Repository, LocalData, Filter } from 'src/app/data/data';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { CollaboratorDataSource } from './../collaborator-data-source';
 import { MatPaginator } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoriesService } from '../../../repositories/repositories.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { tap, debounceTime } from 'rxjs/operators';
@@ -29,7 +29,7 @@ export class CollaboratorListComponent implements OnInit, OnDestroy {
     @ViewChild(MatPaginator,{static : false}) paginator: MatPaginator;
 
     constructor(private router:Router, private repositoryService: RepositoriesService,
-        private spinner: NgxSpinnerService) { }
+        private spinner: NgxSpinnerService, private r: ActivatedRoute) { }
 
     ngOnInit() {
         this.filter = {
@@ -74,6 +74,14 @@ export class CollaboratorListComponent implements OnInit, OnDestroy {
     search(searchText:string){
         this.searchSubject.next(searchText);
         this.paginator.pageIndex = 0;
+    }
+
+    showContributor(row:any){
+
+        
+        localStorage.setItem(LocalData.Collaborator, JSON.stringify(row) );
+        this.router.navigate(['../detail'],{queryParams:{name:this.repository.Name,collaborator:row.Id}, relativeTo:this.r});
+
     }
 
     ngOnDestroy(): void {

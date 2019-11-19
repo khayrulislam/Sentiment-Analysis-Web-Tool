@@ -45,7 +45,8 @@ export enum ModalAction{
 
 export enum LocalData{
     Repository = "repository",
-    Branch = "branch"
+    Branch = "branch",
+    Collaborator = "collaborator"
 }
 
 export enum NavigationItem{

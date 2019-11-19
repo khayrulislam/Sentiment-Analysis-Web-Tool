@@ -8,7 +8,7 @@ import { tap } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InputModalComponent } from './input-modal/input-modal.component';
 import { catchError, finalize } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-repositories',
@@ -21,6 +21,8 @@ export class RepositoriesComponent implements OnInit {
     displayedColumns= ["RepoId", "RepositoryName","OwnerName","State","Url"];
     length: number[] =  [5,10,20];
     filter: Filter;
+
+    searchSubject: Subject<string> = new Subject();
 
     @ViewChild(MatPaginator,{static: false}) paginator: MatPaginator;
     
@@ -38,6 +40,12 @@ export class RepositoriesComponent implements OnInit {
             SearchText : "",
             SortOrder : "asc"
         };
+
+        this.searchSubject.pipe().subscribe((searchText)=>{
+            this.filter.SearchText = searchText;
+            this.loadRepositoryData();
+        });
+
         this.dataSource.loadFilterRepositoryies(this.filter);
     }
 
@@ -75,6 +83,12 @@ export class RepositoriesComponent implements OnInit {
             }
 
         });
+    }
+
+
+    search(searchText:string){
+        this.searchSubject.next(searchText);
+        this.paginator.pageIndex = 0;
     }
 
 }
