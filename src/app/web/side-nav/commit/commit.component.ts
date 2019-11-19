@@ -111,7 +111,7 @@ export class CommitComponent implements OnInit {
         };
         this.options= [
             { viewValue: "Only", value:"only"},
-            { viewValue: "All", value:"all"}
+            { viewValue: "All ", value:"all"}
         ];
         this.selectedOption = this.options[0].value;
         this.loadCommitData( String(this.repository.Id) );
@@ -127,6 +127,9 @@ export class CommitComponent implements OnInit {
             }];
             this.updateFromInput = true;
             this.result = response.PieData;
+            this.spinner.hide();
+
+        }, err =>{
             this.spinner.hide();
         } );
     }
