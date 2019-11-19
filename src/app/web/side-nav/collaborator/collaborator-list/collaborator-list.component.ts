@@ -1,18 +1,20 @@
 import { Repository, LocalData, Filter } from 'src/app/data/data';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { CollaboratorDataSource } from './../collaborator-data-source';
 import { MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { RepositoriesService } from '../../../repositories/repositories.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { tap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-collaborator-list',
   templateUrl: './collaborator-list.component.html',
   styleUrls: ['./collaborator-list.component.scss']
 })
-export class CollaboratorListComponent implements OnInit {
+export class CollaboratorListComponent implements OnInit, OnDestroy {
+
 
     repository: Repository;
     filter: Filter
@@ -21,6 +23,8 @@ export class CollaboratorListComponent implements OnInit {
     contributorDataSource : CollaboratorDataSource;
     displayedColumns: string[] = ["Name","Contribution"];
     length: number[] =  [5,10,20];
+
+    private searchSubject: Subject<string> = new Subject();
 
     @ViewChild(MatPaginator,{static : false}) paginator: MatPaginator;
 
@@ -35,6 +39,10 @@ export class CollaboratorListComponent implements OnInit {
             SearchText : "",
             SortOrder : "asc"
         };
+        this.searchSubject.pipe().subscribe( (SearchText:string)=>{
+            this.filter.SearchText = SearchText;
+            this.loadCollaboratorData();
+        });
         this.contributorDataSource = new CollaboratorDataSource(this.repositoryService, this.spinner);
         this.getCurrentRepository();
     }
@@ -59,6 +67,15 @@ export class CollaboratorListComponent implements OnInit {
         this.filter.PageNumber = this.paginator.pageIndex;
         this.filter.PageSize = this.paginator.pageSize;
         this.contributorDataSource.loadCollaboratorData(this.filter);
+    }
+
+    search(searchText:string){
+        this.searchSubject.next(searchText);
+        this.paginator.pageIndex = 0;
+    }
+
+    ngOnDestroy(): void {
+        this.searchSubject.unsubscribe();
     }
 
 }

@@ -7,7 +7,7 @@
                 <div fxLayout="row" fxLayoutAlign="end center" >
                     <mat-form-field class="search-box" appearance="outline">
                         <mat-label>Search</mat-label>
-                        <input matInput placeholder="Collaborator name">
+                        <input matInput placeholder="Collaborator name" (keyup)="search($event.target.value)">
                     </mat-form-field>
                 </div>              
             </mat-card-content>   
