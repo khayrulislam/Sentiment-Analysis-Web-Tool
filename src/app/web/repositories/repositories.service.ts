@@ -66,4 +66,25 @@ export class RepositoriesService {
         return this.http.post<CollaboratorDetail>(API.contributorDetail, chartParam);
     }
 
+    contributorCommitDetail(chartParam: CollaboratorChartParams): Observable<ChartData>{
+        return this.http.post<ChartData>(API.contributorCommitDetail,chartParam);
+    }
+
+    contributorIssueDetail(chartParam: CollaboratorChartParams): Observable<ChartData>{
+        return this.http.post<ChartData>(API.contributorIssueDetail,chartParam);
+    }
+
+    contributorPullRequestDetail(chartParam: CollaboratorChartParams): Observable<ChartData>{
+        return this.http.post<ChartData>(API.contributorPullRequestDetail,chartParam);
+    }
+
+    issueChartDataList(chartParams: ChartParams):Observable<ChartData>{
+        return this.http.post<ChartData>(API.issueChartData, chartParams);
+    }
+
+    pullRequestChartDataList(chartParam:ChartParams): Observable<ChartData>{
+        return this.http.post<ChartData>(API.pullRequestChartData, chartParam);
+    }
+
+
 }

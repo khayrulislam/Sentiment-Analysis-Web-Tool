@@ -18,5 +18,15 @@ export const API = {
 
     // contributor
     contributorFilterList: `${environment.server_api}/contributor/GetFilterList`,
-    contributorDetail: `${environment.server_api}/contributor/GetDetail`
+    contributorDetail: `${environment.server_api}/contributor/GetDetail`,
+    contributorCommitDetail: `${environment.server_api}/contributor/GetCommitChartData`,
+    contributorIssueDetail: `${environment.server_api}/contributor/GetIssueChartData`,
+    contributorPullRequestDetail: `${environment.server_api}/contributor/GetpullRequestChartData`,
+
+    // issue
+    issueChartData: `${environment.server_api}/issue/GetChartData`,
+
+
+    // pullrequest
+    pullRequestChartData: `${environment.server_api}/issue/GetPullRequestChartData`,
 }

@@ -100,6 +100,9 @@ app-b-commit{
 }
 
 app-collaborator-detail{
+    .mat-card{
+        padding: 1em 1em 0em;
+    }
     .mat-form-field-appearance-outline
     .mat-form-field-wrapper {
         margin: 0;

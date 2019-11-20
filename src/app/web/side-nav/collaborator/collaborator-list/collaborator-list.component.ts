@@ -37,7 +37,7 @@ export class CollaboratorListComponent implements OnInit, OnDestroy {
             PageNumber : 0,
             PageSize : this.length[0],
             SearchText : "",
-            SortOrder : "asc"
+            SortOrder : "dsc"
         };
         this.searchSubject.pipe(
             debounceTime(500)
