@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import * as Highcharts from 'highcharts';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LocalData, Repository, ChartParams, Parameter, Branch } from 'src/app/data/data';
+import { LocalData, Repository, ChartParams, Parameter, Branch, ChartData } from 'src/app/data/data';
 
 
 @Component({
@@ -104,16 +104,17 @@ export class BCommitComponent implements OnInit {
             Option: Parameter.Only
         }
         this.options= [
-            { viewValue: "Sentiment Commits", value:"only"},
-            { viewValue: "All commits", value:"all"}
+            { viewValue: "Sentiment Commits", value: Parameter.Only},
+            { viewValue: "All commits", value: Parameter.All}
         ];
+
         this.selectedOption = this.options[0].value;
         this.loadCommitData( String(this.repository.Id) );
     }
 
     loadCommitData(repoId:string){
         this.spinner.show();
-        this.repositoryService.branchCommitChartDataList(this.chartParams).subscribe( response=>{
+        this.repositoryService.branchCommitChartDataList(this.chartParams).subscribe( (response: ChartData) =>{
             this.chartOptions.series = [{
                 data: response.LineData,
                 type: 'line',
@@ -122,7 +123,7 @@ export class BCommitComponent implements OnInit {
             this.updateFromInput = true;
             this.result = response.PieData;
             this.spinner.hide();
-        } );
+        }, err =>{ this.spinner.hide()} );
     }
 
     onChangeOption(event:any){

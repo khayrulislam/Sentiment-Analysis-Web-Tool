@@ -1,10 +1,10 @@
-
 <div class="side-nav-content">
     
     <div>
         <mat-card>
             <mat-card-content > 
-                <div fxLayout="row" fxLayoutAlign="end center">
+                <div fxLayout="row" fxLayoutAlign="space-between  center">
+                    <div> <h3>Commit statistic </h3> </div>
                     <mat-form-field appearance="outline">
                         <mat-label>Select an option</mat-label>
                         <mat-select [(value)]="selectedOption" (selectionChange) ="onChangeOption($event)">

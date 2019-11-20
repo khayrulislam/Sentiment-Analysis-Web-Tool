@@ -17,5 +17,6 @@ export const API = {
     commitChartDataList: `${environment.server_api}/commit/GetChartData`,
 
     // contributor
-    contributorFilterList: `${environment.server_api}/contributor/GetFilterList`
+    contributorFilterList: `${environment.server_api}/contributor/GetFilterList`,
+    contributorDetail: `${environment.server_api}/contributor/GetDetail`
 }

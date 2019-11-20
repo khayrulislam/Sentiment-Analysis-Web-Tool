@@ -1,4 +1,4 @@
-import { Repository, Filter, RepositoryInput, Branch, ChartParams, BranchChartParams, Contributor } from './../../data/data';
+import { Repository, Filter, RepositoryInput, Branch, ChartParams, BranchChartParams, Contributor, CollaboratorChartParams, ChartData, CollaboratorDetail } from './../../data/data';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -50,16 +50,20 @@ export class RepositoriesService {
         return this.http.get<any>(API.dashboardDataList,{params:{repoId:repoId}});
     }
 
-    commitChartDataList(chartParams: ChartParams):Observable<any>{
-        return this.http.post<any>(API.commitChartDataList,chartParams);
+    commitChartDataList(chartParams: ChartParams):Observable<ChartData>{
+        return this.http.post<ChartData>(API.commitChartDataList,chartParams);
     }
 
-    branchCommitChartDataList(branchChartParams: BranchChartParams): Observable<any>{
-        return this.http.post<any>(API.branchCommitChartDataList,branchChartParams);
+    branchCommitChartDataList(branchChartParams: BranchChartParams): Observable<ChartData>{
+        return this.http.post<ChartData>(API.branchCommitChartDataList,branchChartParams);
     }
 
     contributorFilterList(filter: Filter): Observable<Entries<Contributor>>{
         return this.http.post<Entries<Contributor>>(API.contributorFilterList,filter);
+    }
+
+    contributorDetail(chartParam: CollaboratorChartParams): Observable<CollaboratorDetail>{
+        return this.http.post<CollaboratorDetail>(API.contributorDetail, chartParam);
     }
 
 }

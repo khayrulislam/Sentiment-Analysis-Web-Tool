@@ -3,7 +3,7 @@ import { RepositoriesService } from './../../repositories/repositories.service';
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LocalData, Repository, ChartParams, Parameter, SelectOption } from 'src/app/data/data';
+import { LocalData, Repository, ChartParams, Parameter, SelectOption, ChartData } from 'src/app/data/data';
 import { Chart } from 'highcharts';
 
 @Component({
@@ -119,7 +119,7 @@ export class CommitComponent implements OnInit {
 
     loadCommitData(repoId:string){
         this.spinner.show();
-        this.repositoryService.commitChartDataList(this.chartParams).subscribe( response=>{
+        this.repositoryService.commitChartDataList(this.chartParams).subscribe( (response : ChartData) =>{
             this.chartOptions.series = [{
                 data: response.LineData,
                 type: 'line',
@@ -128,7 +128,6 @@ export class CommitComponent implements OnInit {
             this.updateFromInput = true;
             this.result = response.PieData;
             this.spinner.hide();
-
         }, err =>{
             this.spinner.hide();
         } );

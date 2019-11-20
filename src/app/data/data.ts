@@ -1,12 +1,12 @@
+import { ChartData } from 'src/app/data/data';
 import { Branch, ChartParams, Contributor } from './data';
-import { Data } from '@angular/router'
 
 export interface Repository {
     Id: number,
     RepoId: number,
     Name: string,
     OwnerName: string,
-    AnalysisDate: Data,
+    AnalysisDate: Date,
     State: boolean,
     Url: string,
 }
@@ -67,6 +67,9 @@ export enum Parameter{
     Only = "only"
 }
 
+
+// chart interface
+
 export interface ChartParams{
     RepoId : number,
     Option : string
@@ -75,6 +78,30 @@ export interface ChartParams{
 export interface BranchChartParams extends ChartParams {
     BranchId: number,
 }
+
+export interface CollaboratorChartParams extends ChartParams{
+    ContributorId: number
+}
+
+export interface PieSliceData{
+    name : string,
+    value : number,
+    extra : {
+        code : string
+    }
+}
+
+export interface ChartData{
+    LineData : [],
+    PieData : []
+}
+
+export interface CollaboratorDetail{
+    Commit : ChartData,
+    Issue : ChartData,
+    PullRequest: ChartData
+}
+
 
 export interface SelectOption{
     value:string,
