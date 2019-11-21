@@ -45,4 +45,20 @@ export class IssueDataSource implements DataSource<Issue> {
 
     }
 
+
+    loadPullData(filter: issueFilter){
+        this.issueLoading.next(true);
+        this.spinner.show();
+        this.repositoryService.pullRequestFilterList(filter).pipe(
+            catchError( () => ([])),
+            finalize( () => this.issueLoading.next(false))
+        ).
+        subscribe( (response : Entries<Issue>) =>{
+            this.issueSubject.next(response.Data);
+            this.totlaData = response.TotalData;
+            this.spinner.hide();
+        }, err=>{ this.spinner.hide(); });
+
+    }
+
 }

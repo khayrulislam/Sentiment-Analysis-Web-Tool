@@ -1,26 +1,26 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Repository, issueFilter, ModalAction, LocalData } from 'src/app/data/data';
+import { IssueDataSource } from '../../issue/issue-list/issue-data-source';
+import { PullDataSource } from './pull-data-source';
+import { MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { RepositoriesService } from 'src/app/web/repositories/repositories.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { IssueDataSource } from './issue-data-source';
-import { issueFilter, Repository, LocalData, ModalAction } from 'src/app/data/data';
 import { Router } from '@angular/router';
-import { MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { tap } from 'rxjs/operators';
-import { IssueFilterModalComponent } from './issue-filter-modal/issue-filter-modal.component';
+import { IssueFilterModalComponent } from '../../issue/issue-list/issue-filter-modal/issue-filter-modal.component';
 
 @Component({
-  selector: 'app-issue-list',
-  templateUrl: './issue-list.component.html',
-  styleUrls: ['./issue-list.component.scss']
+  selector: 'app-pull-list',
+  templateUrl: './pull-list.component.html',
+  styleUrls: ['./pull-list.component.scss']
 })
-export class IssueListComponent implements OnInit {
-
+export class PullListComponent implements OnInit {
 
     private repository: Repository;
     private repositoryId: number;
-    private displayedColumns: string[] = ['IssueNumber','State','UpdateDate','CommentCount']; // ,'Pos','Neg','PosTitle','NegTitle'
+    private displayedColumns: string[] = ['pullNumber','State','UpdateDate','CommentCount']; // ,'Pos','Neg','PosTitle','NegTitle'
 
-    issueDataSource : IssueDataSource;
+    pullDataSource : IssueDataSource;
 
     private filter: issueFilter;
     length: number[] =  [5,10,20];
@@ -31,7 +31,6 @@ export class IssueListComponent implements OnInit {
         private router: Router, private matdialog: MatDialog) { }
 
     ngOnInit() {
-
         this.filter = {
             RepoId:0,
             PageNumber : 0,
@@ -40,11 +39,9 @@ export class IssueListComponent implements OnInit {
             SortOrder : "asc",
             State: "all",
             Comment: "all"
-        }
-        this.issueDataSource = new IssueDataSource(this.repositoryService, this.spinner);
-
+        };
+        this.pullDataSource = new IssueDataSource(this.repositoryService, this.spinner);
         this.getCurrentRepository();
-
     }
 
     ngAfterViewInit(){
@@ -54,7 +51,7 @@ export class IssueListComponent implements OnInit {
     loadIssueData(){
         this.filter.PageSize = this.paginator.pageSize,
         this.filter.PageNumber = this.paginator.pageIndex;
-        this.issueDataSource.loadIssueData(this.filter);
+        this.pullDataSource.loadPullData(this.filter);
     }
 
     getCurrentRepository(){
@@ -65,7 +62,7 @@ export class IssueListComponent implements OnInit {
         else{
             this.repositoryId = this.repository.Id;
             this.filter.RepoId = this.repositoryId;
-            this.issueDataSource.loadIssueData(this.filter);
+            this.pullDataSource.loadPullData(this.filter);
         }
     }
 
@@ -90,8 +87,7 @@ export class IssueListComponent implements OnInit {
                 this.loadIssueData();
             }
         });
-
-
     }
+
 
 }

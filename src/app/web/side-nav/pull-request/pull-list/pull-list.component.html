@@ -1,4 +1,3 @@
-
 <div class="side-nav-content">
     
     <div>
@@ -13,26 +12,26 @@
 
     <div class="mat-elevation-z8 table-content">
         <!-- <mat-progress-bar *ngIf="branchDataSource.loading$ | async" mode="indeterminate"></mat-progress-bar> -->
-        <mat-table [dataSource]="issueDataSource">
+        <mat-table [dataSource]="pullDataSource">
 
-            <ng-container matColumnDef="IssueNumber">
-                <mat-header-cell *matHeaderCellDef> Issue number </mat-header-cell>
-                <mat-cell *matCellDef="let issue" > {{issue.IssueNumber}}   </mat-cell>
+            <ng-container matColumnDef="pullNumber">
+                <mat-header-cell *matHeaderCellDef> Pull Request number </mat-header-cell>
+                <mat-cell *matCellDef="let pull" > {{pull.IssueNumber}}   </mat-cell>
             </ng-container>
         
             <ng-container matColumnDef="State">
                 <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
-                <mat-cell *matCellDef="let issue">{{issue.State}}</mat-cell>
+                <mat-cell *matCellDef="let pull">{{pull.State}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="UpdateDate">
                 <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
-                <mat-cell *matCellDef="let issue" > {{issue.UpdateDate}}  </mat-cell>
+                <mat-cell *matCellDef="let pull" > {{pull.UpdateDate}}  </mat-cell>
             </ng-container>
         
             <ng-container matColumnDef="CommentCount">
                 <mat-header-cell *matHeaderCellDef>Comments</mat-header-cell>
-                <mat-cell *matCellDef="let issue">{{issue.CommentCount}}</mat-cell>
+                <mat-cell *matCellDef="let pull">{{pull.CommentCount}}</mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -40,8 +39,7 @@
             
         </mat-table>
         
-        <mat-paginator [length]="issueDataSource.totlaData" [pageSizeOptions]="length" showFirstLastButtons></mat-paginator>
+        <mat-paginator [length]="pullDataSource.totlaData" [pageSizeOptions]="length" showFirstLastButtons></mat-paginator>
     </div>
 
 </div>
-

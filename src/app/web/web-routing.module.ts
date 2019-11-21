@@ -14,6 +14,8 @@ import { CollaboratorListComponent } from './side-nav/collaborator/collaborator-
 import { CollaboratorDetailComponent } from './side-nav/collaborator/collaborator-detail/collaborator-detail.component';
 import { IssueListComponent } from './side-nav/issue/issue-list/issue-list.component';
 import { IssueDetailComponent } from './side-nav/issue/issue-detail/issue-detail.component';
+import { PullListComponent } from './side-nav/pull-request/pull-list/pull-list.component';
+import { PullDetailComponent } from './side-nav/pull-request/pull-detail/pull-detail.component';
 
 
 const routes: Routes = [
@@ -74,7 +76,22 @@ const routes: Routes = [
             },
             {
                 path: 'pull-request',
-                component: PullRequestComponent
+                component: PullRequestComponent,
+                children:[
+                    {
+                        path:'list',
+                        component: PullListComponent
+                    },
+                    {
+                        path:'detail',
+                        component: PullDetailComponent
+                    },
+                    {
+                        path:'',
+                        redirectTo:'list',
+                        pathMatch:'full'
+                    }
+                ]
             },
             {
                 path: 'collaborator',

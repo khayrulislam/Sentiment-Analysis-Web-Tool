@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { SelectOption, ModalAction } from 'src/app/data/data';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-issue-filter-modal',
@@ -14,9 +14,15 @@ export class IssueFilterModalComponent implements OnInit {
 
     selectedStateOption: string;
     selectedCommentOption: string;
+    title : string;
 
 
-    constructor(private dialogRef: MatDialogRef<IssueFilterModalComponent>) { }
+    constructor(private dialogRef: MatDialogRef<IssueFilterModalComponent>, @Inject(MAT_DIALOG_DATA) data) 
+    {
+        this.title = data.title;
+        this.selectedStateOption = data.state;
+        this.selectedCommentOption = data.comment;
+    }
 
     ngOnInit() {
         this.stateOptions= [
@@ -26,8 +32,11 @@ export class IssueFilterModalComponent implements OnInit {
         ];
         this.commentOptions= [
             { viewValue: "All", value:"all"},
-            { viewValue: "Contain comments", value:"only"}
+            { viewValue: "Comments", value:"only"},
+            { viewValue: "No comments", value:"no"}
         ];
+        
+
     }
 
     onStateChangeOption(event:any){

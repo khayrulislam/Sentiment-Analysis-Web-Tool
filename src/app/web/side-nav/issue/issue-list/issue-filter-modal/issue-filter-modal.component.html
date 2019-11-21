@@ -1,56 +1,31 @@
 <!-- <p>issue-filter-modal works!</p> -->
 
 
-<h2 mat-dialog-title> Issue Filter </h2>
+<h2 mat-dialog-title>{{title}} </h2>
 
 <mat-dialog-content fxLayout="column" fxLayoutAlign="space-around none">
 
+    <mat-form-field appearance="outline">
+        <mat-label>Select state</mat-label>
+        <mat-select [(value)]="selectedStateOption" (selectionChange) ="onStateChangeOption($event)">
+            <mat-option *ngFor="let item of stateOptions" [value]="item.value">
+                {{item.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 
-        <mat-form-field appearance="outline">
-                <mat-label>Select state</mat-label>
-                <mat-select [(value)]="selectedOption" (selectionChange) ="onStateChangeOption($event)">
-                    <mat-option *ngFor="let item of stateOptions" [value]="item.value">
-                        {{item.viewValue}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-    
-    
-            <mat-form-field appearance="outline">
-                <mat-label>Select comment</mat-label>
-                <mat-select [(value)]="selectedCommentOption" (selectionChange) ="onCommentChangeOption($event)" >
-                    <mat-option *ngFor="let item of commentOptions" [value]="item.value">
-                        {{item.viewValue}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-
-    <!-- <form [formGroup]="issueFilter" fxLayout="column" fxLayoutAlign="space-around none">
-        
-        <mat-form-field appearance="outline">
-            <mat-label>Select state</mat-label>
-            <mat-select [(value)]="selectedOption" (selectionChange) ="onChangeOption($event)">
-                <mat-option *ngFor="let item of stateOptions" [value]="item.value">
-                    {{item.viewValue}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-
-
-        <mat-form-field appearance="outline">
-            <mat-label>Select comment</mat-label>
-            <mat-select [(value)]="selectedCommentOption" (selectionChange) ="onChangeOption($event)">
-                <mat-option *ngFor="let item of commentOptions" [value]="item.value">
-                    {{item.viewValue}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        
-    </form> -->
+    <mat-form-field appearance="outline">
+        <mat-label>Select comment</mat-label>
+        <mat-select [(value)]="selectedCommentOption" (selectionChange) ="onCommentChangeOption($event)" >
+            <mat-option *ngFor="let item of commentOptions" [value]="item.value">
+                {{item.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 
 </mat-dialog-content>
 
 <mat-dialog-actions align ="end">
     <button class="mat-raised-button"(click)="close()">Close</button>
-    <button class="mat-raised-button mat-primary" (click)="done()">Analysis</button>
+    <button class="mat-raised-button mat-primary" (click)="done()">Ok</button>
 </mat-dialog-actions>
