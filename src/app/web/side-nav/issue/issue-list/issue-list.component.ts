@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RepositoriesService } from 'src/app/web/repositories/repositories.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-issue-list',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IssueListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private repositoryService: RepositoriesService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }
