@@ -93,4 +93,14 @@ export class RepositoriesService {
     pullRequestFilterList(filter:issueFilter): Observable<any>{
         return this.http.post<any>(API.pullRequestFilterList, filter);
     }
+
+    issueFilterChartDataList(filter:issueFilter): Observable<ChartData>{
+        return this.http.post<ChartData>(API.issueFilterCharData, filter);
+    }
+
+    pullRequestFilterChartDataList(filter:issueFilter): Observable<ChartData>{
+        return this.http.post<ChartData>(API.pullRequestFilterChartData, filter);
+    }
+
+
 }

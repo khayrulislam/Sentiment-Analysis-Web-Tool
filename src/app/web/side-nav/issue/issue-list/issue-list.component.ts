@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { tap } from 'rxjs/operators';
 import { IssueFilterModalComponent } from './issue-filter-modal/issue-filter-modal.component';
+import * as Highcharts from 'highcharts';
 
 @Component({
   selector: 'app-issue-list',
@@ -14,6 +15,71 @@ import { IssueFilterModalComponent } from './issue-filter-modal/issue-filter-mod
   styleUrls: ['./issue-list.component.scss']
 })
 export class IssueListComponent implements OnInit {
+
+
+    highcharts: typeof Highcharts ;
+    chartConstructor = "chart";
+    updateFromInput = false;
+    chartOptions: Highcharts.Options =  {
+        exporting: {
+            enabled: true
+        },
+        chart: {
+          zoomType: 'x'
+        },
+        title: {
+          text: 'Issue sentiment over time'
+        },
+        subtitle: {
+          text: document.ontouchstart === undefined ?
+            'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+        },
+        xAxis: {
+          type: 'datetime'
+        },
+        yAxis: {
+          title: {
+            text: 'Sentiment range'
+          }
+        },
+        legend: {
+          enabled: false
+        },
+        plotOptions: {
+          area: {
+            fillColor: {
+              linearGradient: {
+                x1: 0,
+                y1: 0,
+                x2: 0,
+                y2: 1
+              },
+              stops: [
+                [0, Highcharts.getOptions().colors[0]],
+              ]
+            },
+            marker: {
+              radius: 2
+            },
+            lineWidth: 1,
+            states: {
+              hover: {
+                lineWidth: 1
+              }
+            },
+            threshold: null
+          }
+        },
+        series:[{
+            type: 'line',
+            name: 'Sentiment chart'
+        }]
+    };
+
+    result: any[];
+    colorScheme = {
+      domain: ['#FF9800', '#4CAF50', '#F44334', '#00BCD4','#9C27B0','#E81E63','#6C757D', '#673AB7']
+    };
 
 
     private repository: Repository;
@@ -42,7 +108,7 @@ export class IssueListComponent implements OnInit {
             Comment: "all"
         }
         this.issueDataSource = new IssueDataSource(this.repositoryService, this.spinner);
-
+        this.highcharts = Highcharts;
         this.getCurrentRepository();
 
     }
@@ -55,6 +121,25 @@ export class IssueListComponent implements OnInit {
         this.filter.PageSize = this.paginator.pageSize,
         this.filter.PageNumber = this.paginator.pageIndex;
         this.issueDataSource.loadIssueData(this.filter);
+        this.loadIssueChartData();
+    }
+
+
+    loadIssueChartData(){
+
+        this.spinner.show();
+
+        this.repositoryService.issueFilterChartDataList(this.filter).subscribe((response)=>{
+            this.chartOptions.series = [{
+                data: response.LineData,
+                type: 'line',
+                name: 'Sentiment chart'
+            }];
+            this.updateFromInput = true;
+            this.result = response.PieData;
+            this.spinner.hide();
+        }, err=>{ this.spinner.hide();});
+
     }
 
     getCurrentRepository(){
@@ -65,7 +150,9 @@ export class IssueListComponent implements OnInit {
         else{
             this.repositoryId = this.repository.Id;
             this.filter.RepoId = this.repositoryId;
+            //this.loadIssueData();
             this.issueDataSource.loadIssueData(this.filter);
+            this.loadIssueChartData();
         }
     }
 
