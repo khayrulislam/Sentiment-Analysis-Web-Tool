@@ -81,7 +81,7 @@ export class IssueListComponent implements OnInit {
 
         let dialogRef = this.matdialog.open(IssueFilterModalComponent, matDialogConfig);
         dialogRef.afterClosed().subscribe( (res) => {
-            if(res.event == ModalAction.DONE){
+            if( res.event && res.event == ModalAction.DONE){
                 if(res.data){
                     this.filter.Comment = res.data.comment;
                     this.filter.State = res.data.state;

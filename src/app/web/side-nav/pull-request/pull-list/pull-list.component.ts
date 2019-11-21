@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Repository, issueFilter, ModalAction, LocalData } from 'src/app/data/data';
 import { IssueDataSource } from '../../issue/issue-list/issue-data-source';
-import { PullDataSource } from './pull-data-source';
 import { MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { RepositoriesService } from 'src/app/web/repositories/repositories.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -45,10 +44,10 @@ export class PullListComponent implements OnInit {
     }
 
     ngAfterViewInit(){
-        this.paginator.page.pipe(tap(()=>this.loadIssueData())).subscribe();        
+        this.paginator.page.pipe(tap(()=>this.loadPullData())).subscribe();        
     }
 
-    loadIssueData(){
+    loadPullData(){
         this.filter.PageSize = this.paginator.pageSize,
         this.filter.PageNumber = this.paginator.pageIndex;
         this.pullDataSource.loadPullData(this.filter);
@@ -66,14 +65,14 @@ export class PullListComponent implements OnInit {
         }
     }
 
-    openIssueFilter(){
+    openPullFilter(){
         const matDialogConfig = new MatDialogConfig();
         matDialogConfig.autoFocus = true;
         matDialogConfig.width = '400px';
         matDialogConfig.data = {
             state: this.filter.State,
             comment: this.filter.Comment,
-            title: "Issue Filter"
+            title: "Pull Request Filter"
         }
 
         let dialogRef = this.matdialog.open(IssueFilterModalComponent, matDialogConfig);
@@ -83,8 +82,9 @@ export class PullListComponent implements OnInit {
                     this.filter.Comment = res.data.comment;
                     this.filter.State = res.data.state;
                 }
+                debugger;
                 this.paginator.pageIndex = 0;
-                this.loadIssueData();
+                this.loadPullData();    
             }
         });
     }
