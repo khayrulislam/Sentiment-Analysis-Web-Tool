@@ -37,9 +37,10 @@ import { CollaboratorListComponent } from './side-nav/collaborator/collaborator-
 import { CollaboratorDetailComponent } from './side-nav/collaborator/collaborator-detail/collaborator-detail.component';
 import { IssueListComponent } from './side-nav/issue/issue-list/issue-list.component';
 import { IssueDetailComponent } from './side-nav/issue/issue-detail/issue-detail.component';
+import { IssueFilterModalComponent } from './side-nav/issue/issue-list/issue-filter-modal/issue-filter-modal.component';
 
 @NgModule({
-  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent, BCommitComponent,  ListComponent, CollaboratorListComponent, CollaboratorDetailComponent, IssueListComponent, IssueDetailComponent],
+  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent, BCommitComponent,  ListComponent, CollaboratorListComponent, CollaboratorDetailComponent, IssueListComponent, IssueDetailComponent, IssueFilterModalComponent],
   imports: [
     CommonModule,
     WebRoutingModule,
@@ -65,6 +66,6 @@ import { IssueDetailComponent } from './side-nav/issue/issue-detail/issue-detail
     HighchartsChartModule,
     MatSelectModule
   ],
-  entryComponents:[InputModalComponent]
+  entryComponents:[InputModalComponent,IssueFilterModalComponent]
 })
 export class WebModule { }

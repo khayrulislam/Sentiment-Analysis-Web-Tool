@@ -15,6 +15,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin: 0 1em 0 1em;
 }
 
+.mat-row:hover {
+    background-color: rgba(0, 0, 0, .05);
+    cursor: pointer;
+}
+
 app-repositories{
     .mat-card{
         padding: 0em 1em;

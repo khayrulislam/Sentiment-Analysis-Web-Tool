@@ -23,6 +23,7 @@ export class ListComponent implements OnInit {
 
     displayedColumns: string[] = ["BranchName","Sha"];
     length: number[] =  [5,10,20];
+    
     @ViewChild(MatPaginator,{static : false}) paginator: MatPaginator;
 
     searchSubject : Subject<string> = new Subject();

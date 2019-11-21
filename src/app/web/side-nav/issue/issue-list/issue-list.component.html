@@ -1,1 +1,57 @@
 
+<div class="side-nav-content">
+    
+    <div>
+        <mat-card>
+            <mat-card-content > 
+                <div fxLayout="row" fxLayoutAlign="space-between center" >
+                    <button mat-button class="mat-primary"  (click)="openIssueFilter()" > Filter </button>
+                    <!-- <div>
+                        Branch list
+                    </div>
+                    <div>
+                        <mat-form-field class="search-box" appearance="outline">
+                            <mat-label>Search</mat-label>
+                            <input matInput placeholder="Collaborator name" (keyup)="search($event.target.value)">
+                        </mat-form-field>
+                    </div> -->
+
+                </div>              
+            </mat-card-content>   
+        </mat-card>
+    </div>
+
+    <div class="mat-elevation-z8 table-content">
+        <!-- <mat-progress-bar *ngIf="branchDataSource.loading$ | async" mode="indeterminate"></mat-progress-bar> -->
+        <mat-table [dataSource]="issueDataSource">
+
+            <ng-container matColumnDef="IssueNumber">
+                <mat-header-cell *matHeaderCellDef> Issue number </mat-header-cell>
+                <mat-cell *matCellDef="let issue" > {{issue.IssueNumber}}   </mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="State">
+                <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
+                <mat-cell *matCellDef="let issue">{{issue.State}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="UpdateDate">
+                <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+                <mat-cell *matCellDef="let issue" > {{issue.UpdateDate}}  </mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="CommentCount">
+                <mat-header-cell *matHeaderCellDef>Comments</mat-header-cell>
+                <mat-cell *matCellDef="let issue">{{issue.CommentCount}}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns" (click)=showCommit(row)></mat-row>
+            
+        </mat-table>
+        
+        <mat-paginator [length]="issueDataSource.totlaData" [pageSizeOptions]="length" showFirstLastButtons></mat-paginator>
+    </div>
+
+</div>
+

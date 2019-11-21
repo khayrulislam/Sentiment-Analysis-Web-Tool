@@ -13,7 +13,11 @@ export class IssueDataSource implements DataSource<Issue> {
     private issueLoading = new BehaviorSubject<boolean>(false);
 
     public loading$ = this.issueLoading.asObservable();
-    public totalData;
+    public totlaData;
+
+
+    constructor(private repositoryService: RepositoriesService, private spinner: NgxSpinnerService){
+    }
 
     connect(collectionViewer: CollectionViewer): Observable<Issue[] | readonly Issue[]> {
         return this.issueSubject.asObservable();
@@ -24,8 +28,7 @@ export class IssueDataSource implements DataSource<Issue> {
         this.issueLoading.complete();
     }
     
-    constructor(private repositoryService: RepositoriesService, private spinner: NgxSpinnerService){
-    }
+
 
     loadIssueData(filter: issueFilter){
         this.issueLoading.next(true);
@@ -36,7 +39,7 @@ export class IssueDataSource implements DataSource<Issue> {
         ).
         subscribe( (response : Entries<Issue>) =>{
             this.issueSubject.next(response.Data);
-            this.totalData = response.TotalData;
+            this.totlaData = response.TotalData;
             this.spinner.hide();
         }, err=>{ this.spinner.hide(); });
 

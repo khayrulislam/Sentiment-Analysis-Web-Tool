@@ -29,7 +29,9 @@ export interface issueFilter{
     PageNumber: number,
     PageSize: number,
     SearchText: string,
-    SortOrder: string
+    SortOrder: string,
+    State: string,
+    Comment: string
 }
 
 export interface Issue{
@@ -60,7 +62,8 @@ export interface Contributor{
 
 export enum ModalAction{
     CLOSE = "close",
-    ANALYSIS = "analysis"
+    ANALYSIS = "analysis",
+    DONE = "done"
 }
 
 export enum LocalData{
