@@ -25,8 +25,9 @@ export const API = {
 
     // issue
     issueChartData: `${environment.server_api}/issue/GetChartData`,
-
+    issueFilterList: `${environment.server_api}/issue/GetFilterList`,
 
     // pullrequest
     pullRequestChartData: `${environment.server_api}/issue/GetPullRequestChartData`,
+    pullRequestFilterList: `${environment.server_api}/issue/GetPullRequestFilterList`
 }

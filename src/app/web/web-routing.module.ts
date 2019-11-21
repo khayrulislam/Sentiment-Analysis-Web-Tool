@@ -12,6 +12,8 @@ import { BCommitComponent } from './side-nav/branch/b-commit/b-commit.component'
 import { ListComponent } from './side-nav/branch/list/list.component';
 import { CollaboratorListComponent } from './side-nav/collaborator/collaborator-list/collaborator-list.component';
 import { CollaboratorDetailComponent } from './side-nav/collaborator/collaborator-detail/collaborator-detail.component';
+import { IssueListComponent } from './side-nav/issue/issue-list/issue-list.component';
+import { IssueDetailComponent } from './side-nav/issue/issue-detail/issue-detail.component';
 
 
 const routes: Routes = [
@@ -53,7 +55,22 @@ const routes: Routes = [
             },
             {
                 path: 'issue',
-                component: IssueComponent
+                component: IssueComponent,
+                children:[
+                    {
+                        path: 'list',
+                        component: IssueListComponent
+                    },
+                    {
+                        path: 'detail',
+                        component: IssueDetailComponent
+                    },
+                    {
+                        path: '',
+                        redirectTo: 'list',
+                        pathMatch: 'full'
+                    }
+                ]
             },
             {
                 path: 'pull-request',

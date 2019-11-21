@@ -24,6 +24,26 @@ export interface Filter{
     SortOrder: string
 }
 
+export interface issueFilter{
+    RepoId:number;
+    PageNumber: number,
+    PageSize: number,
+    SearchText: string,
+    SortOrder: string
+}
+
+export interface Issue{
+    Id: number,
+    IssueNumber: number,
+    Pos: number,
+    Neg: number,
+    PosTitle: number,
+    NegTitle: number,
+    State: string,
+    UpdateDate: Date,
+    CommentCount: number
+}
+
 export interface Branch{
     Id: number,
     Name: string,

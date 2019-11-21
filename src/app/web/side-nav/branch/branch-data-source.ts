@@ -39,6 +39,6 @@ export class BranchDataSource implements DataSource<Branch> {
             this.branchSubject.next(response.Data);
             this.totlaData = response.TotalData;
             this.spinner.hide();
-        });
+        }, err=> this.spinner.hide());
     }
 }

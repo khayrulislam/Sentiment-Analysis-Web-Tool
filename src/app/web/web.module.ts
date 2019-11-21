@@ -35,9 +35,11 @@ import { BCommitComponent } from './side-nav/branch/b-commit/b-commit.component'
 import { ListComponent } from './side-nav/branch/list/list.component';
 import { CollaboratorListComponent } from './side-nav/collaborator/collaborator-list/collaborator-list.component';
 import { CollaboratorDetailComponent } from './side-nav/collaborator/collaborator-detail/collaborator-detail.component';
+import { IssueListComponent } from './side-nav/issue/issue-list/issue-list.component';
+import { IssueDetailComponent } from './side-nav/issue/issue-detail/issue-detail.component';
 
 @NgModule({
-  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent, BCommitComponent,  ListComponent, CollaboratorListComponent, CollaboratorDetailComponent],
+  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent, BCommitComponent,  ListComponent, CollaboratorListComponent, CollaboratorDetailComponent, IssueListComponent, IssueDetailComponent],
   imports: [
     CommonModule,
     WebRoutingModule,
