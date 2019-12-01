@@ -76,7 +76,7 @@ export class RepositoriesComponent implements OnInit {
                     catchError( ()=> of([])),
                     finalize(()=> {})
                 ).subscribe(()=>{
-                    setTimeout( () => {this.loadRepositoryData();}, 500 );
+                    setTimeout( () => {this.loadRepositoryData();}, 1000 );
                     console.log( " update analysis " )
                 });
                 console.log( " data"+ res.data.RepositoryName )
@@ -95,7 +95,7 @@ export class RepositoriesComponent implements OnInit {
             catchError( ()=> of([])),
             finalize(()=> {})
         ).subscribe(()=>{
-            setTimeout( () => {this.loadRepositoryData();}, 500 );
+            setTimeout( () => {this.loadRepositoryData();}, 1000 );
             console.log( " update analysis " )
         });
     }

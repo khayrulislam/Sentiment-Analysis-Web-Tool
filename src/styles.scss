@@ -20,6 +20,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     cursor: pointer;
 }
 
+.highcharts-credits{
+    display: none;
+}
+
 app-repositories{
     .mat-card{
         padding: 0em 1em;
@@ -91,6 +95,7 @@ app-commit{
     .mat-form-field-wrapper {
         padding-bottom: 0;
     }
+
 }
 
 app-b-commit{
@@ -102,7 +107,9 @@ app-b-commit{
     .mat-form-field-wrapper {
         padding-bottom: 0;
     }
+
 }
+
 
 app-collaborator-detail{
     .mat-card{
