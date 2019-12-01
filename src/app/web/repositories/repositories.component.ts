@@ -1,5 +1,5 @@
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Filter, Repository, ModalAction, LocalData } from './../../data/data';
+import { Filter, Repository, ModalAction, LocalData, RepositoryInput } from './../../data/data';
 import { RepositoriesService } from './repositories.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RepositoriesDataSource } from './repositories-data-source';
@@ -18,7 +18,7 @@ import { of, Subject } from 'rxjs';
 export class RepositoriesComponent implements OnInit {
 
     dataSource: RepositoriesDataSource;
-    displayedColumns= ["RepoId", "RepositoryName","OwnerName","State","Url"];
+    displayedColumns= ["RepoId", "RepositoryName","OwnerName","State","Url","Action"];
     length: number[] =  [5,10,20];
     filter: Filter;
 
@@ -76,15 +76,29 @@ export class RepositoriesComponent implements OnInit {
                     catchError( ()=> of([])),
                     finalize(()=> {})
                 ).subscribe(()=>{
-                    this.loadRepositoryData();
-                    console.log( " updae analysis " )
+                    setTimeout( () => {this.loadRepositoryData();}, 500 );
+                    console.log( " update analysis " )
                 });
                 console.log( " data"+ res.data.RepositoryName )
             }
-
         });
     }
 
+
+    reAnalyzeRepository(repository:any){
+        debugger;
+        let repo : RepositoryInput = {
+            RepositoryName: repository.Name,
+            RepositoryOwnerName:repository.OwnerName
+        };
+        this.repositoriesService.repositoryAnalysis(repo).pipe(
+            catchError( ()=> of([])),
+            finalize(()=> {})
+        ).subscribe(()=>{
+            setTimeout( () => {this.loadRepositoryData();}, 500 );
+            console.log( " update analysis " )
+        });
+    }
 
     search(searchText:string){
         this.searchSubject.next(searchText);

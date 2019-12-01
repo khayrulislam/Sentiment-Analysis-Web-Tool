@@ -20,7 +20,7 @@
 
                     <div>
                         <mat-form-field class="search-box" appearance="outline">
-                            <mat-label>Search</mat-label>
+                            <!-- <mat-label>Search</mat-label> -->
                             <input matInput placeholder="Repository name" (keyup)="search($event.target.value)">
                         </mat-form-field>
                     </div>
@@ -80,8 +80,16 @@
                         <mat-icon >launch</mat-icon>
                         </a>
                     </mat-cell>
-                </ng-container>
+            </ng-container>
         
+            <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                <mat-cell *matCellDef="let repository" (click)="$event.stopPropagation()">
+                    <button mat-icon-button color="primary" title="Re-analyse Repository" (click)="reAnalyzeRepository(repository)" >
+                        <mat-icon>play_circle_filled</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             
