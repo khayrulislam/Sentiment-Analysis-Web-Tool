@@ -1,11 +1,4 @@
-<!-- <ngx-spinner></ngx-spinner> -->
 <mat-toolbar color="primary">
-    <!-- <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button>
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button> -->
     <span>Sentiment-Web</span>
 </mat-toolbar>
 
@@ -76,7 +69,7 @@
             <ng-container matColumnDef="Url">
                 <mat-header-cell *matHeaderCellDef>GitHub Link</mat-header-cell>
                 <mat-cell *matCellDef="let repository" (click)="$event.stopPropagation()">
-                    <a href="{{repository.Url}}" target="_blank">
+                    <a href="{{repository.Url}}" title="Visit GitHub" target="_blank">
                         <mat-icon >launch</mat-icon>
                         </a>
                     </mat-cell>
