@@ -31,5 +31,11 @@ export const API = {
     // pullrequest
     pullRequestChartData: `${environment.server_api}/issue/GetPullRequestChartData`,
     pullRequestFilterList: `${environment.server_api}/issue/GetPullRequestFilterList`,
-    pullRequestFilterChartData: `${environment.server_api}/issue/GetPullRequestFilterSentimentData`
+    pullRequestFilterChartData: `${environment.server_api}/issue/GetPullRequestFilterSentimentData`,
+
+
+    // download
+
+    downloadRepository: `${environment.server_api}/download/DownloadRepository`
+
 }

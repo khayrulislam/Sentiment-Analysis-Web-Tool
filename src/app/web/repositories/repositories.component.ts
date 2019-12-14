@@ -10,6 +10,8 @@ import { InputModalComponent } from './input-modal/input-modal.component';
 import { catchError, finalize } from 'rxjs/operators';
 import { of, Subject } from 'rxjs';
 
+import * as FileSaver from 'file-saver';
+
 @Component({
   selector: 'app-repositories',
   templateUrl: './repositories.component.html',
@@ -103,6 +105,17 @@ export class RepositoriesComponent implements OnInit {
     search(searchText:string){
         this.searchSubject.next(searchText);
         this.paginator.pageIndex = 0;
+    }
+
+
+
+    download(){
+
+        this.repositoriesService.downloadRepository().subscribe( (response)=>{
+
+            let blob = new Blob([response], { type: 'application/octet-stream' });
+            FileSaver.saveAs( blob,'report.xlsx' );
+        });
     }
 
 }

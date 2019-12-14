@@ -1,7 +1,7 @@
 import { Repository, Filter, RepositoryInput, Branch, ChartParams, BranchChartParams, Contributor, CollaboratorChartParams, ChartData, CollaboratorDetail, issueFilter } from './../../data/data';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Entries } from 'src/app/data/entries';
 import { API } from 'src/app/data/api';
 
@@ -102,5 +102,9 @@ export class RepositoriesService {
         return this.http.post<ChartData>(API.pullRequestFilterChartData, filter);
     }
 
+
+    downloadRepository(): Observable<any> {
+        return this.http.post( API.downloadRepository,{}, { responseType: "arraybuffer"} );
+    }
 
 }
