@@ -20,7 +20,7 @@ import * as FileSaver from 'file-saver';
 export class RepositoriesComponent implements OnInit {
 
     dataSource: RepositoriesDataSource;
-    displayedColumns= ["RepoId", "RepositoryName","OwnerName","State","Url","Action"];
+    displayedColumns= ["RepoId", "RepositoryName","OwnerName","State","Url","Action","Download"];
     length: number[] =  [5,10,20];
     filter: Filter;
 
@@ -109,12 +109,18 @@ export class RepositoriesComponent implements OnInit {
 
 
 
-    download(){
+    download(repository:Repository){
 
-        this.repositoriesService.downloadRepository().subscribe( (response)=>{
+
+        this.spinner.show();
+        this.repositoriesService.downloadRepository(repository.Id.toString()).subscribe( (response)=>{
 
             let blob = new Blob([response], { type: 'application/octet-stream' });
             FileSaver.saveAs( blob,'report.xlsx' );
+            this.spinner.hide();
+        },
+        err=>{
+            this.spinner.hide();
         });
     }
 

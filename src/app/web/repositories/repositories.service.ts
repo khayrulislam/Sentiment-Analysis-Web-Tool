@@ -102,9 +102,8 @@ export class RepositoriesService {
         return this.http.post<ChartData>(API.pullRequestFilterChartData, filter);
     }
 
-
-    downloadRepository(): Observable<any> {
-        return this.http.post( API.downloadRepository,{}, { responseType: "arraybuffer"} );
+    downloadRepository(repositoryId:string): Observable<any> {
+        return this.http.get( API.downloadRepository, {params:{repoId:repositoryId},  responseType: "arraybuffer"} );
     }
 
 }

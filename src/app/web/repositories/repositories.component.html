@@ -1,3 +1,4 @@
+<ngx-spinner></ngx-spinner>
 <mat-toolbar color="primary">
     <span>Sentiment-Web</span>
 </mat-toolbar>
@@ -24,11 +25,11 @@
                         </button>
                     </div>
 
-                    <div>
+                    <!-- <div>
                         <button mat-icon-button color="primary" (click)="download()" >
                             download
                         </button>
-                    </div>
+                    </div> -->
 
                 </div>               
             </mat-card-content>   
@@ -87,6 +88,16 @@
                 <mat-cell *matCellDef="let repository" (click)="$event.stopPropagation()">
                     <button mat-icon-button color="primary" title="Re-analyse Repository" (click)="reAnalyzeRepository(repository)" >
                         <mat-icon>play_circle_filled</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Download">
+                <mat-header-cell *matHeaderCellDef>Download</mat-header-cell>
+                <mat-cell *matCellDef="let repository" (click)="$event.stopPropagation()">
+                    <button mat-icon-button color="primary" title="Download Repository" (click)="download(repository)" >
+                        <mat-icon>arrow_downward</mat-icon>
                     </button>
                 </mat-cell>
             </ng-container>
