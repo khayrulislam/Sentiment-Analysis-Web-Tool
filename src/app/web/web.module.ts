@@ -19,7 +19,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule} from '@angular/flex-layout';
-import { MatProgressBarModule, MatDialogModule } from '@angular/material';
+import { MatProgressBarModule, MatDialogModule, MatSelectModule } from '@angular/material';
 import { InputModalComponent } from './repositories/input-modal/input-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BranchComponent } from './side-nav/branch/branch.component';
@@ -28,9 +28,21 @@ import { PullRequestComponent } from './side-nav/pull-request/pull-request.compo
 import { CollaboratorComponent } from './side-nav/collaborator/collaborator.component';
 import { CommitComponent } from './side-nav/commit/commit.component';
 import { DashboardComponent } from './side-nav/dashboard/dashboard.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { HighchartsChartModule } from 'highcharts-angular';
+import { BCommitComponent } from './side-nav/branch/b-commit/b-commit.component';
+import { ListComponent } from './side-nav/branch/list/list.component';
+import { CollaboratorListComponent } from './side-nav/collaborator/collaborator-list/collaborator-list.component';
+import { CollaboratorDetailComponent } from './side-nav/collaborator/collaborator-detail/collaborator-detail.component';
+import { IssueListComponent } from './side-nav/issue/issue-list/issue-list.component';
+import { IssueDetailComponent } from './side-nav/issue/issue-detail/issue-detail.component';
+import { IssueFilterModalComponent } from './side-nav/issue/issue-list/issue-filter-modal/issue-filter-modal.component';
+import { PullListComponent } from './side-nav/pull-request/pull-list/pull-list.component';
+import { PullDetailComponent } from './side-nav/pull-request/pull-detail/pull-detail.component';
 
 @NgModule({
-  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent],
+  declarations: [ SideNavComponent,  RepositoriesComponent, InputModalComponent, BranchComponent, IssueComponent, PullRequestComponent, CollaboratorComponent, CommitComponent, DashboardComponent, BCommitComponent,  ListComponent, CollaboratorListComponent, CollaboratorDetailComponent, IssueListComponent, IssueDetailComponent, IssueFilterModalComponent, PullListComponent, PullDetailComponent],
   imports: [
     CommonModule,
     WebRoutingModule,
@@ -50,8 +62,12 @@ import { DashboardComponent } from './side-nav/dashboard/dashboard.component';
     HttpClientModule,
     MatProgressBarModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxChartsModule,
+    NgxSpinnerModule,
+    HighchartsChartModule,
+    MatSelectModule
   ],
-  entryComponents:[InputModalComponent]
+  entryComponents:[InputModalComponent,IssueFilterModalComponent]
 })
 export class WebModule { }

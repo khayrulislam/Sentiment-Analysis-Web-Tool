@@ -1,20 +1,22 @@
-import { NgxSpinnerService } from 'ngx-spinner';
-import { RepositoriesService } from './../../repositories/repositories.service';
+import { BranchChartParams, SelectOption } from './../../../../data/data';
+import { RepositoriesService } from './../../../repositories/repositories.service';
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import * as Highcharts from 'highcharts';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LocalData, Repository, ChartParams, Parameter, SelectOption, ChartData } from 'src/app/data/data';
-import { Chart } from 'highcharts';
+import { LocalData, Repository, ChartParams, Parameter, Branch, ChartData } from 'src/app/data/data';
+
 
 @Component({
-  selector: 'app-commit',
-  templateUrl: './commit.component.html',
-  styleUrls: ['./commit.component.scss']
+  selector: 'app-b-commit',
+  templateUrl: './b-commit.component.html',
+  styleUrls: ['./b-commit.component.scss']
 })
-export class CommitComponent implements OnInit {
+export class BCommitComponent implements OnInit {
 
     repository: Repository;
-    highcharts: typeof Highcharts ;
+    branch: Branch;
+    Highcharts: typeof Highcharts ;
     chartConstructor = "chart";
     updateFromInput = false;
     chartOptions: Highcharts.Options =  {
@@ -72,25 +74,15 @@ export class CommitComponent implements OnInit {
             name: 'Sentiment chart'
         }]
     };
+
    
-    // bra chart properties
     result: any[];
     colorScheme = {
       domain: ['#FF9800', '#4CAF50', '#F44334', '#00BCD4','#9C27B0','#E81E63','#6C757D', '#673AB7']
     };
+    gradient = false;
 
-    showLegend = true;
-
-    showXAxis = true;
-    showXAxisLabel = true;
-    xAxisLabel = 'Sentiment value';
-
-    showYAxis = true;
-    showYAxisLabel = true;
-    yAxisLabel = 'Count';
-
-    chartParams: ChartParams;
-
+    chartParams: BranchChartParams;
     options: SelectOption[];
     selectedOption: string;
 
@@ -100,26 +92,29 @@ export class CommitComponent implements OnInit {
     ngOnInit() {
         this.repositoryService.menuClickEventSend.subscribe( response =>{
             if(response==="menuClick") {
-                setTimeout( () => {window.dispatchEvent(new Event('resize')); }, 100 );
+                setTimeout( () => {window.dispatchEvent(new Event('resize')); }, 50 );
             }
         });
-        this.highcharts = Highcharts;
+        this.Highcharts = Highcharts;
         this.repository =  JSON.parse(localStorage.getItem(LocalData.Repository)); 
+        this.branch = JSON.parse(localStorage.getItem(LocalData.Branch)); 
         this.chartParams = {
             RepoId: this.repository.Id,
+            BranchId: this.branch.Id,
             Option: Parameter.Only
-        };
+        }
         this.options= [
-            { viewValue: "Sentiment Commits", value:"only"},
-            { viewValue: "All commits", value:"all"}
+            { viewValue: "Sentiment Commits", value: Parameter.Only},
+            { viewValue: "All commits", value: Parameter.All}
         ];
+
         this.selectedOption = this.options[0].value;
         this.loadCommitData( String(this.repository.Id) );
     }
 
     loadCommitData(repoId:string){
         this.spinner.show();
-        this.repositoryService.commitChartDataList(this.chartParams).subscribe( (response : ChartData) =>{
+        this.repositoryService.branchCommitChartDataList(this.chartParams).subscribe( (response: ChartData) =>{
             this.chartOptions.series = [{
                 data: response.LineData,
                 type: 'line',
@@ -128,9 +123,7 @@ export class CommitComponent implements OnInit {
             this.updateFromInput = true;
             this.result = response.PieData;
             this.spinner.hide();
-        }, err =>{
-            this.spinner.hide();
-        } );
+        }, err =>{ this.spinner.hide()} );
     }
 
     onChangeOption(event:any){
@@ -138,7 +131,8 @@ export class CommitComponent implements OnInit {
         this.loadCommitData( String(this.repository.Id) );
     }
 
-    onSelect(event:any){
-    }
 
+    onSelect(event:any){
+
+    }
 }

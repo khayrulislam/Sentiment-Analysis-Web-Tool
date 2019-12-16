@@ -1,10 +1,5 @@
+<ngx-spinner></ngx-spinner>
 <mat-toolbar color="primary">
-    <!-- <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button>
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button> -->
     <span>Sentiment-Web</span>
 </mat-toolbar>
 
@@ -16,16 +11,33 @@
                     <div>
                         Repository List
                     </div>
+
+                    <div>
+                        <mat-form-field class="search-box" appearance="outline">
+                            <!-- <mat-label>Search</mat-label> -->
+                            <input matInput placeholder="Repository name" (keyup)="search($event.target.value)">
+                        </mat-form-field>
+                    </div>
+
                     <div>
                         <button mat-icon-button color="primary" title="Analyse Repository" (click)="openInputModal()" >
                             <mat-icon>add_box</mat-icon>
                         </button>
                     </div>
+
+                    <!-- <div>
+                        <button mat-icon-button color="primary" (click)="download()" >
+                            download
+                        </button>
+                    </div> -->
+
                 </div>               
             </mat-card-content>   
         </mat-card>
     </div>
+    
     <div class=" mat-elevation-z8" >
+
         <mat-progress-bar *ngIf="dataSource.loading$ | async" mode="indeterminate"></mat-progress-bar>
        
         <mat-table [dataSource]="dataSource">
@@ -65,12 +77,30 @@
             <ng-container matColumnDef="Url">
                 <mat-header-cell *matHeaderCellDef>GitHub Link</mat-header-cell>
                 <mat-cell *matCellDef="let repository" (click)="$event.stopPropagation()">
-                    <a href="{{repository.Url}}" target="_blank">
+                    <a href="{{repository.Url}}" title="Visit GitHub" target="_blank">
                         <mat-icon >launch</mat-icon>
                         </a>
                     </mat-cell>
-                </ng-container>
+            </ng-container>
         
+            <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                <mat-cell *matCellDef="let repository" (click)="$event.stopPropagation()">
+                    <button mat-icon-button color="primary" title="Re-analyse Repository" (click)="reAnalyzeRepository(repository)" >
+                        <mat-icon>play_circle_filled</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Download">
+                <mat-header-cell *matHeaderCellDef>Download</mat-header-cell>
+                <mat-cell *matCellDef="let repository" (click)="$event.stopPropagation()">
+                    <button mat-icon-button color="primary" title="Download Repository" (click)="download(repository)" >
+                        <mat-icon>arrow_downward</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             
@@ -78,7 +108,7 @@
             
         </mat-table>
         
-        <mat-paginator [length]="dataSource.totlaData" [pageSizeOptions]="[2,3,4,5]" showFirstLastButtons>
+        <mat-paginator [length]="dataSource.totlaData" [pageSizeOptions]="length" showFirstLastButtons>
         </mat-paginator>
     </div>
     

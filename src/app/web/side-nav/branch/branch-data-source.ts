@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { DataSource } from '@angular/cdk/table';
 import { Branch, Filter } from 'src/app/data/data';
 import { CollectionViewer }  from '@angular/cdk/collections';
@@ -16,7 +17,7 @@ export class BranchDataSource implements DataSource<Branch> {
     public loading$ = this.branchLoading.asObservable();
     public totlaData;
 
-    constructor(private repositoryService:RepositoriesService){
+    constructor(private repositoryService:RepositoriesService,private spinner:NgxSpinnerService){
     }
 
     connect( collectionViewer: CollectionViewer): Observable<Branch[] | readonly Branch[]> {
@@ -30,12 +31,14 @@ export class BranchDataSource implements DataSource<Branch> {
 
     loadBranchData(filter: Filter){
         this.branchLoading.next(true);
+        this.spinner.show();
         this.repositoryService.branchFilterList(filter).pipe(
             catchError( () => ([])),
             finalize( () => this.branchLoading.next(false))
         ).subscribe( (response : Entries<Branch>) =>{
             this.branchSubject.next(response.Data);
-            this.totlaData = response.TotalData
-        });
+            this.totlaData = response.TotalData;
+            this.spinner.hide();
+        }, err=> this.spinner.hide());
     }
 }

@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-collaborator',
-  templateUrl: './collaborator.component.html',
-  styleUrls: ['./collaborator.component.scss']
+  template:`
+  <router-outlet></router-outlet>
+  `,
+  styles:[]
 })
 export class CollaboratorComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

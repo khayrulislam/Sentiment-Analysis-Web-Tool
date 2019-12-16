@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-issue',
-  templateUrl: './issue.component.html',
-  styleUrls: ['./issue.component.scss']
+  template: `
+  <router-outlet></router-outlet>
+  `,
+  styles: []
 })
 export class IssueComponent implements OnInit {
 

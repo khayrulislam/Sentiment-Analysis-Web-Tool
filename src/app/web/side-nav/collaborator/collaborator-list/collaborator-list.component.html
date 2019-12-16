@@ -1,0 +1,48 @@
+
+<div class="side-nav-content">
+    
+    <div>
+        <mat-card>
+            <mat-card-content > 
+                <div fxLayout="row" fxLayoutAlign="space-between center" >
+
+                    <div>
+                        Collaborator list
+                    </div>
+                    <div>
+                        <mat-form-field class="search-box" appearance="outline">
+                            <mat-label>Search</mat-label>
+                            <input matInput placeholder="Collaborator name" (keyup)="search($event.target.value)">
+                        </mat-form-field>
+                    </div>
+
+                </div>              
+            </mat-card-content>   
+        </mat-card>
+    </div>
+
+    <div class="mat-elevation-z8 table-content">
+        <mat-table [dataSource]="contributorDataSource">
+    
+            <ng-container matColumnDef="Name">
+                <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                <mat-cell *matCellDef="let contributor" > 
+                    {{contributor.Name}}   
+                </mat-cell>
+                </ng-container>
+        
+            <ng-container matColumnDef="Contribution">
+                <mat-header-cell *matHeaderCellDef>Contribution</mat-header-cell>
+                <mat-cell *matCellDef="let contributor">{{contributor.Contribution}}</mat-cell>
+                </ng-container>
+    
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns" (click)=showContributor(row)></mat-row>
+            
+        </mat-table>
+        
+        <mat-paginator [length]="contributorDataSource.totlaData" [pageSizeOptions]="length" showFirstLastButtons></mat-paginator>
+    </div>
+
+</div>
+
